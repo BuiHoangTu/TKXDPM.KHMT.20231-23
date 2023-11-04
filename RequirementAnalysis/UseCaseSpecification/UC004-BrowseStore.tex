@@ -1,0 +1,126 @@
+\documentclass[../UseCaseSpecification.tex]{subfiles}
+
+\begin{document}
+\begin{enumerate}
+    \item \textbf{Use case code}
+    \newline
+    UC003
+
+    \item \textbf{Brief Description}
+    \newline
+    This use case describes the interaction between users and the AIMS software when the customer wishes to look for media items.
+
+    \item \textbf{Actors}
+    \begin{itemize}
+        \item User
+    \end{itemize}
+
+    \item \textbf{Preconditions}
+    \newline
+    No
+
+    \item \textbf{Basic Flow of Events}
+    \begin{enumerate}
+        \item The customer starts AIMS 
+        \item AIMS displays 20 media items on each page 
+        \item The customer looks for items 
+    \end{enumerate}
+
+    \item \textbf{Alternative flows}
+    {\bfseries Table N-Alternative flows of events for UC Place order}
+    \begin{flushleft}
+        \tablefirsthead{}
+        \tablehead{}
+        \tabletail{}
+        \tablelasttail{}
+        \begin{supertabular}{|m{0.87200004cm}|m{1.918cm}|m{3.3cm}|m{5.803cm}|m{2.728cm}|}
+            \hline
+            \foreignlanguage{english}{\textbf{No}} &
+            \foreignlanguage{english}{\textbf{Location}} &
+            \foreignlanguage{english}{\textbf{Condition}} &
+            \foreignlanguage{english}{\textbf{Action}} &
+            \foreignlanguage{english}{\textbf{Resume location}} \\
+            \hline
+            
+            \begin{enumerate}
+                \item ~
+            \end{enumerate} &
+            At Step 3 &
+            If the customer chooses to search items by their attributes &
+            \begin{itemize}
+                \item The customer selects attribute of media for searching, types in the attribute and presses \textit{search} button
+                \item The AIMS 20 related media items on each searching page
+            \end{itemize} &
+            At Step 3 \\
+            \hline
+
+            \begin{enumerate}
+                \item ~
+            \end{enumerate} &
+            At Step 3 &
+            If the customer chooses to sort items by their price &
+            \begin{itemize}
+                \item The customer presses \textit{sort} button 
+                \item The AIMS software displays the items in sorted order
+            \end{itemize} &
+            At Step 3 \\
+            \hline
+            
+            \begin{enumerate}
+                \item ~
+            \end{enumerate} &
+            At Step 3 &
+            If the customer chooses to add item into cart &
+            \begin{itemize}
+                \item The customer types in wanted quantity and presses \textit{Add to Cart} button 
+                \item The AIMS software adds items with the quantity into the cart
+            \end{itemize} &
+            At Step 3 \\
+            \hline
+
+        \end{supertabular}
+    \end{flushleft}
+
+    \item \textbf{Input data}
+    {\bfseries  Table Input data of Search}
+    \begin{flushleft}
+        \tablefirsthead{}
+        \tablehead{}
+        \tabletail{}
+        \tablelasttail{}
+        \begin{supertabular}{|m{0.744cm}|m{2.181cm}|m{2.165cm}|m{2.052cm}|m{3.5939999cm}|m{4.086cm}|}
+            \hline
+            \foreignlanguage{english}{\textbf{No}} &
+            \foreignlanguage{english}{\textbf{Data fields}} &
+            \foreignlanguage{english}{\textbf{Description}} &
+            \foreignlanguage{english}{\textbf{Mandatory}} &
+            \foreignlanguage{english}{\textbf{Valid condition}} &
+            \foreignlanguage{english}{\textbf{Example}}\\
+            \hline
+            
+            \begin{enumerate}
+                \item ~
+            \end{enumerate} &
+            Attribute selection box &
+            selection box of available attributes of media &
+            No (Default: Title) &
+            ~ &
+            Title \\
+            \hline
+
+            \begin{enumerate}
+                \item ~
+            \end{enumerate} &
+            Attribute search box &
+            ~ &
+            Yes &
+            Maximum of 50 characters &
+            Falling Star \\
+            \hline
+            
+        \end{supertabular}
+    \end{flushleft}
+
+
+\end{enumerate}
+\end{document}
