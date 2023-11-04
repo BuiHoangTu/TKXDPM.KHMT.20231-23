@@ -1,0 +1,210 @@
+\documentclass[../UseCaseSpecification.tex]{subfiles}
+
+\begin{document}
+\begin{enumerate}
+    \item \textbf{Use case code}
+    \newline
+    UC002
+
+    \item \textbf{Brief Description}
+    \newline
+    This use case describes the interaction between users and the AIMS software and VNPay when the customer wishes to pay his/her order.
+
+    \item \textbf{Actors}
+    \begin{itemize}
+        \item User
+        \item VNPay
+    \end{itemize}
+
+    \item \textbf{Preconditions}
+    \newline
+    The AIMS software has calculated the total amount of money which the customer has to pay.
+
+    \item \textbf{Basic Flow of Events}
+    \begin{enumerate}
+        \item The AIMS software displays the payment screen
+        \item The customer enters credit card info and confirms to pay order
+        \item The AIMS software asks the Interbank to process the payment transaction
+        \item The Interbank processes the payment transaction
+        \item The AIMS software saves the payment transaction
+        \item The AIMS software displays transaction information
+        \item The AIMS software sends e-mail to the customer
+    \end{enumerate}
+
+    \item \textbf{Alternative flows}
+    {\bfseries Table N-Alternative flows of events for UC Place order}
+    \begin{flushleft}
+        \tablefirsthead{}
+        \tablehead{}
+        \tabletail{}
+        \tablelasttail{}
+        \begin{supertabular}{|m{0.87200004cm}|m{1.918cm}|m{3.3cm}|m{5.803cm}|m{2.728cm}|}
+            \hline
+            \foreignlanguage{english}{\textbf{No}} &
+            \foreignlanguage{english}{\textbf{Location}} &
+            \foreignlanguage{english}{\textbf{Condition}} &
+            \foreignlanguage{english}{\textbf{Action}} &
+            \foreignlanguage{english}{\textbf{Resume location}}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            \foreignlanguage{english}{At Step 3} &
+            \foreignlanguage{english}{If the card info is in invalid} &
+            \begin{itemize}
+                \item \foreignlanguage{english}{The AIMS software notifies that the card info is invalid}\end{itemize}
+            &
+            \foreignlanguage{english}{At Step 1}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            At Step \foreignlanguage{english}{4} &
+            If the card info is wrong &
+            \begin{itemize}
+                \item \foreignlanguage{english}{The AIMS software notifies that the card info }\foreignlanguage{english}{is wrong}\end{itemize}
+            &
+            \foreignlanguage{english}{At Step 1}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            At Step \foreignlanguage{english}{4} &
+            If the balance is not enough &
+            \begin{itemize}
+                \item The AIMS software notifies that the balance is not enough\end{itemize}
+            &
+            \foreignlanguage{english}{At Step 1}\\\hline
+        \end{supertabular}
+    \end{flushleft}
+
+    \item \textbf{Input data}
+    {\bfseries  Table Input data of credit card information}
+    \begin{flushleft}
+        \tablefirsthead{}
+        \tablehead{}
+        \tabletail{}
+        \tablelasttail{}
+        \begin{supertabular}{|m{0.744cm}|m{2.181cm}|m{2.165cm}|m{2.052cm}|m{3.5939999cm}|m{4.086cm}|}
+            \hline
+            \foreignlanguage{english}{\textbf{No}} &
+            \foreignlanguage{english}{\textbf{Data fields}} &
+            \foreignlanguage{english}{\textbf{Description}} &
+            \foreignlanguage{english}{\textbf{Mandatory}} &
+            \foreignlanguage{english}{\textbf{Valid condition}} &
+            \foreignlanguage{english}{\textbf{Example}}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            Card holder name &
+            ~
+            &
+            Yes &
+            Maximum of 50 characters\foreignlanguage{english}{, all in uppercase} &
+            \foreignlanguage{english}{BUI HOANG TU}\\\hline
+            \foreignlanguage{english}{2.} &
+            Card number &
+            ~
+            &
+            Yes &
+            16 digits &
+            \foreignlanguage{english}{0123 4567 8912 3456}\\\hline
+            \foreignlanguage{english}{3.} &
+            Expiration date &
+            ~
+            &
+            Yes &
+            Consist of month and last 2 digits of year onl\foreignlanguage{english}{y} &
+            01/23\\\hline
+            \foreignlanguage{english}{4.} &
+            Security code &
+            ~
+            &
+            Yes &
+            3 digits &
+            \foreignlanguage{english}{221}\\\hline
+        \end{supertabular}
+    \end{flushleft}
+
+    \item \textbf{Output data}
+    {\bfseries Table B-Output data of …}
+    \begin{flushleft}
+        \tablefirsthead{}
+        \tablehead{}
+        \tabletail{}
+        \tablelasttail{}
+        \begin{supertabular}{|m{0.742cm}|m{2.799cm}|m{2.0509999cm}|m{5.822cm}|m{3.612cm}|}
+            \hline
+            \foreignlanguage{english}{\textbf{No}} &
+            \foreignlanguage{english}{\textbf{Data fields}} &
+            \foreignlanguage{english}{\textbf{Description}} &
+            \foreignlanguage{english}{\textbf{Display format}} &
+            \foreignlanguage{english}{\textbf{Example}}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            Transaction ID &
+            ~
+            &
+            ~
+            &
+            ~
+            \\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            Card holder name &
+            ~
+            &
+            ~
+            &
+            \foreignlanguage{english}{BUI HOANG TU}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            Amount &
+            \foreignlanguage{english}{Amount of money has been subtracted from your account} &
+            \begin{itemize}
+                \item \foreignlanguage{english}{Right alignment}\item \foreignlanguage{english}{With Vietnamese currency (VND)}\item \foreignlanguage{english}{Vietnam locale}\end{itemize}
+            &
+            \foreignlanguage{english}{12.000VND}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            \foreignlanguage{english}{T}ransaction Content &
+            ~
+            &
+            ~
+            &
+            ~
+            \\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            \foreignlanguage{english}{Balance} &
+            \foreignlanguage{english}{New balance after this transaction} &
+            •\ \ Right alignment
+
+            •\ \ With Vietnamese currency (VND)
+
+            •\ \ Vietnam locale &
+            \foreignlanguage{english}{2.300.123VND}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            Transaction Date &
+            ~
+            &
+            \foreignlanguage{english}{dd/mm/yyyy} &
+            \foreignlanguage{english}{12/08/2002}\\\hline
+        \end{supertabular}
+    \end{flushleft}
+\end{enumerate}
+\end{document}

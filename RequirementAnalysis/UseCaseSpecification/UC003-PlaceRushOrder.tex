@@ -1,0 +1,112 @@
+\documentclass[../UseCaseSpecification.tex]{subfiles}
+
+\begin{document}
+\begin{enumerate}
+    \item \textbf{Use case code}
+    \newline
+    UC003
+
+    \item \textbf{Brief Description}
+    \newline
+    This use case describes the interaction between users and the AIMS software and VNPay when the customer wishes to have fast delivery.
+
+    \item \textbf{Actors}
+    \begin{enumerate}
+        \item User
+        \item VNPay
+    \end{enumerate}
+
+    \item \textbf{Preconditions}
+    \newline
+    User choose to have fast delivery from UC001
+
+    \item \textbf{Basic Flow of Events}
+    \begin{enumerate}
+        \item The AIMS software checks the availability of service in address and items
+        \item AIMS asks for rush order information
+        \item User fills in rush information
+        \item Return to UC001
+    \end{enumerate}
+
+    \item \textbf{Alternative flows}
+    {\bfseries Table Alternative flows of events for UC Place order}
+    \begin{flushleft}
+        \tablefirsthead{}
+        \tablehead{}
+        \tabletail{}
+        \tablelasttail{}
+        \begin{supertabular}{|m{0.85999995cm}|m{1.513cm}|m{3.148cm}|m{7.1200004cm}|m{1.98cm}|}
+            \hline
+            \foreignlanguage{english}{\textbf{No}} &
+            \foreignlanguage{english}{\textbf{Location}} &
+            \foreignlanguage{english}{\textbf{Condition}} &
+            \foreignlanguage{english}{\textbf{Action}} &
+            \foreignlanguage{english}{\textbf{Resume location}}\\\hline
+            \begin{enumerate}
+                \item ~
+            \end{enumerate}
+            &
+            \foreignlanguage{english}{Step 1} &
+            \foreignlanguage{english}{If address is not supported or no item support rush order} &
+            \begin{itemize}
+                \item \foreignlanguage{english}{Notifies} the error \foreignlanguage{english}{in address or no supported item}
+            \end{itemize}
+            &
+            \foreignlanguage{english}{UC001}\\\hline
+            \end{supertabular}
+          \end{flushleft}
+
+    \item \textbf{Input data}
+          {\bfseries Table Input data of delivery information}
+          \begin{flushleft}
+              \tablefirsthead{}
+              \tablehead{}
+              \tabletail{}
+              \tablelasttail{}
+              \begin{supertabular}{|m{0.744cm}|m{2.181cm}|m{2.34cm}|m{2.181cm}|m{3.291cm}|m{4.086cm}|}
+                  \hline
+                  \foreignlanguage{english}{\textbf{No}} &
+                  \foreignlanguage{english}{\textbf{Data fields}} &
+                  \foreignlanguage{english}{\textbf{Description}} &
+                  \foreignlanguage{english}{\textbf{Mandatory}} &
+                  \foreignlanguage{english}{\textbf{Valid condition}} &
+                  \foreignlanguage{english}{\textbf{Example}}\\\hline
+                  \begin{enumerate}
+                      \item ~
+                  \end{enumerate}
+                  &
+                  \foreignlanguage{english}{Extra }Address &
+                  ~
+                  &
+                  Yes &
+                  ~
+                  &
+                  \foreignlanguage{english}{12/18 Dai Co Viet street, Hai Ba Trung district}\\\hline
+                  \begin{enumerate}
+                      \item ~
+                  \end{enumerate}
+                  &
+                  Shipping instructions &
+                  ~
+                  &
+                  \foreignlanguage{english}{No} &
+                  ~
+                  &
+                  \foreignlanguage{english}{Drive in for about 100m}\\\hline
+                  \begin{enumerate}
+                      \item ~
+                  \end{enumerate}
+                  &
+                  \foreignlanguage{english}{Receive time} &
+                  ~
+                  &
+                  \foreignlanguage{english}{Yes} &
+                  \foreignlanguage{english}{hh:mm} &
+                  \foreignlanguage{english}{13:34}\\\hline
+              \end{supertabular}
+          \end{flushleft}
+
+    \item \textbf{Output data}
+    \item \textbf{Post Condition }
+\end{enumerate}
+\end{document}
