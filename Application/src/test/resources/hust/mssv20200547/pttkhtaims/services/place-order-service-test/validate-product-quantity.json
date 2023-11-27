@@ -1,0 +1,98 @@
+[
+  {
+    "cart": [
+      {
+        "title": "item3",
+        "quantity": 3
+      },
+      {
+        "title": "item2",
+        "quantity": 2
+      },
+      {
+        "title": "item1",
+        "quantity": 1
+      }
+    ],
+    "expected": []
+  },
+  {
+    "cart": [
+      {
+        "title":"item3",
+        "quantity":2
+      },
+      {
+        "title":"item1",
+        "quantity":1
+      }
+    ],
+    "expected": []
+  },
+  {
+    "cart": [
+      {
+        "title": "item3",
+        "quantity": 4
+      },
+      {
+        "title": "item2",
+        "quantity": 2
+      },
+      {
+        "title": "item1",
+        "quantity": 1
+      }
+    ],
+    "expected": [{"title": "item3"}]
+  },
+  {
+    "cart": [
+      {
+        "title": "item3",
+        "quantity": 4
+      },
+      {
+        "title": "item2",
+        "quantity": 2
+      },
+      {
+        "title": "item1",
+        "quantity": 1
+      },
+      {
+        "title": "item0",
+        "quantity": 1
+      }
+    ],
+    "expected": [
+      {"title": "item3"},
+      {"title": "item0"}
+    ]
+  },
+  {
+    "cart": [
+      {
+        "title": "item3",
+        "quantity": 4
+      },
+      {
+        "title": "item2",
+        "quantity": 2
+      },
+      {
+        "title": "notInStore",
+        "quantity": 1
+      },
+      {
+        "title": "item0",
+        "quantity": 1
+      }
+    ],
+    "expected": [
+      {"title": "item3"},
+      {"title": "item0"},
+      {"title": "notInStore"}
+    ]
+  }
+]
