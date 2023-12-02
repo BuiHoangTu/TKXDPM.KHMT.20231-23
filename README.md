@@ -1,9 +1,113 @@
-# TKXDPM.KHMT.20231-20200547.BuiHoangTu
+# TKXDPM.KHMT.20231-Group23
+
+## Table of contents
+- [TKXDPM.KHMT.20231-Group23](#tkxdpmkhmt20231-group23)
+  - [Table of contents](#table-of-contents)
+  - [Group members](#group-members)
+  - [What's included](#whats-included)
+  - [Report Content](#report-content)
+  - [AIMS' description](#aims-description)
+
+## Group members
+| Name         | Role        |
+| :----------- | :---------- |
+| Bùi Hoàng Tú | Team Leader |
+
+## What's included
+
+The recommended structure is as follows:
+
+- `AIMS`: folder containing the team's AIMS base code
+- `assets`: folder containing images that you want to include in the report file
+- `README.md`: weekly report file, individuals are required to update their tasks and how their do it into this file
+- `Template.md`: template for the weekly report
+- `pull_request_template.md`: pull request's description template
 
 
-# Problem
+## Report Content
 
-## AIMS: An Internet Media Store
+<details>
+  <summary> W9: 28/11/2023~03/12/2023 </summary>
+  <br>
+  <!-- Member 1 -->
+  <details>
+    <summary>Team Member 1</summary>
+    <br>
+
+    - Assigned tasks:
+      - Task 1
+      - Task 2
+      - ...
+
+    - Implementation details:
+      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Specific implementation details:
+        - Describe specific in detail what you did last week
+        - You can attach images if you want
+
+  </details>
+
+  <!-- Member 2 -->
+  <details>
+    <summary>Team Member 2</summary>
+    <br>
+
+    - Assigned tasks:
+      - Task 1
+      - Task 2
+      - ...
+
+    - Implementation details:
+      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Specific implementation details:
+        - Describe specific in detail what you did last week
+        - You can attach images if you want
+
+  </details>
+
+  <!-- Member 3 -->
+  <details>
+    <summary>Team Member 1</summary>
+    <br>
+
+    - Assigned tasks:
+      - Task 1
+      - Task 2
+      - ...
+
+    - Implementation details:
+      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Specific implementation details:
+        - Describe specific in detail what you did last week
+        - You can attach images if you want
+
+  </details>
+
+  <!-- Member 4 -->
+  <details>
+    <summary>Team Member 1</summary>
+    <br>
+
+    - Assigned tasks:
+      - Task 1
+      - Task 2
+      - ...
+
+    - Implementation details:
+      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Specific implementation details:
+        - Describe specific in detail what you did last week
+        - You can attach images if you want
+
+  </details>
+  
+
+</details>
+
+---
+
+
+## AIMS' description
 
 Con đường tới tri thức, nghệ thuật, và giải trí đã, đang, và sẽ luôn là một phần cuộc sống của mỗi 
 con người, thế nhưng, cuộc sống vốn không dễ dàng. Sẽ có lúc mà sản phẩm của sức lao động 
