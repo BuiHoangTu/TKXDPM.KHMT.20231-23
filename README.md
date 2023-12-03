@@ -13,6 +13,7 @@
 | :----------- | :---------- |
 | Bùi Hoàng Tú | Team Leader |
 | Ngô Văn Tuấn | Member      |
+| Bùi Anh Tuấn | Member      |
 
 ## What's included
 
@@ -66,21 +67,19 @@ The recommended structure is as follows:
 
   </details>
 
-  <!-- Member 3 -->
+  <!-- Bùi Anh Tuấn -->
   <details>
-    <summary>Team Member 1</summary>
+    <summary>Bùi Anh Tuấn</summary>
     <br>
 
     - Assigned tasks:
-      - Task 1
-      - Task 2
-      - ...
+      - Đánh giá tính coupling của 2 hàm getMedias, searchMedias trong HomeController.java
 
     - Implementation details:
       - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
       - Specific implementation details:
-        - Describe specific in detail what you did last week
-        - You can attach images if you want
+        - Hàm setMedias: Data coupling do truyền vào 1 list danh sách medias
+        - Hàm searchMedias: Control coupling vì bên trong hàm có kiểm tra điều kiện if phân luồng
 
   </details>
 
