@@ -69,7 +69,7 @@ The recommended structure is as follows:
 
   <!-- Member 3 -->
   <details>
-    <summary>Nguyễn Tiến Tuấn</summary>
+    <summary>Team Member 3</summary>
     <br>
 
     - Assigned tasks:
@@ -86,8 +86,10 @@ The recommended structure is as follows:
   </details>
 
   <!-- Member 4 -->
+  <!-- Nguyễn Tiến Tuấn -->
   <details>
-    <summary>Team Member 1</summary>
+    <summary>Team Member 4</summary>
+    <summary>Nguyễn Tiến Tuấn</summary>
     <br>
 
     - Assigned tasks:
