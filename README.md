@@ -76,7 +76,7 @@ The recommended structure is as follows:
       - Đánh giá tính coupling của 2 hàm getMedias, searchMedias trong HomeController.java
 
     - Implementation details:
-      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Pull Request(s): #9
       - Specific implementation details:
         - Hàm setMedias: Data coupling do truyền vào 1 list danh sách medias
         - Hàm searchMedias: Control coupling vì bên trong hàm có kiểm tra điều kiện if phân luồng
