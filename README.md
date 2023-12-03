@@ -39,7 +39,7 @@ The recommended structure is as follows:
 
 
     - Implementation details:
-      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Pull Request(s): #8
       - Specific implementation details:
         - Adding comment to classes
 
