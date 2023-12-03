@@ -63,7 +63,7 @@ public class HomeController implements Initializable {
     }
 
     /**
-     * Can thiệp vào luồng dữ liệu của Media In Store Controller
+     * Data Coupling
      * @param medias
      * @throws IOException
      */
@@ -80,6 +80,7 @@ public class HomeController implements Initializable {
         }
     }
 
+    // Controll coupling
     @FXML
     private void searchMedias(ActionEvent ignoredEvent) throws SQLException, IOException {
         var selected = this.searchType.getSelectedToggle();
