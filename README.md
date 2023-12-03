@@ -12,6 +12,7 @@
 | Name         | Role        |
 | :----------- | :---------- |
 | Bùi Hoàng Tú | Team Leader |
+| Ngô Văn Tuấn | Member      |
 
 ## What's included
 
@@ -47,21 +48,21 @@ The recommended structure is as follows:
 
   </details>
 
-  <!-- Member 2 -->
+  <!-- Ngô Văn Tuấn -->
   <details>
-    <summary>Team Member 2</summary>
+    <summary>Ngô Văn Tuấn</summary>
     <br>
 
     - Assigned tasks:
-      - Task 1
-      - Task 2
-      - ...
+      - Đánh giá tính coupling của 4 hàm get, getMediaDetail, searchMedias, accessDB trong file MySqlAims.java
 
     - Implementation details:
       - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
       - Specific implementation details:
-        - Describe specific in detail what you did last week
-        - You can attach images if you want
+        - Hàm get: Control coupling vì bên trong hàm có kiểm tra điều kiện if...else.. phân luồng
+        - Hàm getMediaDetail: Control coupling vì bên trong hàm có kiểm tra điều kiện if...else.. (kiểm tra xem là CD hay DVD) phân luồng
+        - Hàm searchMedias: tương tự hàm get
+        - Hàm accessDB: không thuộc high coupling
 
   </details>
 
