@@ -1,0 +1,16 @@
+**.lock
+*.aux
+*.log
+*.gz
+*.bak
+*.rar
+*.zip 
+
+# docx lock files 
+*~$e*
+
+
+*.tmp
+
+
+*.drawio
