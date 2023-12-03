@@ -30,21 +30,19 @@ The recommended structure is as follows:
 <details>
   <summary> W9: 28/11/2023~03/12/2023 </summary>
   <br>
-  <!-- Member 1 -->
+  <!-- Bui Hoang Tu -->
   <details>
-    <summary>Team Member 1</summary>
+    <summary>Bui Hoang Tu</summary>
     <br>
 
     - Assigned tasks:
-      - Task 1
-      - Task 2
-      - ...
+      - Evaluate coupling in MediaInHomeController
+
 
     - Implementation details:
-      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Pull Request(s): #8
       - Specific implementation details:
-        - Describe specific in detail what you did last week
-        - You can attach images if you want
+        - Adding comment to classes
 
   </details>
 

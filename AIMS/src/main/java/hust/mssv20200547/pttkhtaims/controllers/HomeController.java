@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Control coupling với MediaInStoreController
+ * Control coupling với MediaInStoreController 
  */
 public class HomeController implements Initializable {
     private static final IDatabase MYSQL = new MySqlAims();
@@ -63,7 +63,7 @@ public class HomeController implements Initializable {
     }
 
     /**
-     * Can thiệp vào luồng dữ liệu của Media In Store Controller
+     * Can thiệp vào luồng dữ liệu của Media In Store Controller   
      * @param medias
      * @throws IOException
      */
