@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Common coupling với AIMS do setMedia
+ * Common coupling với AIMS do setMedia  
  */
 public class MediaInHomeController implements Initializable {
     private Media m;
@@ -63,7 +63,7 @@ public class MediaInHomeController implements Initializable {
     }
 
     /**
-     * Sử dụng chung một dữ liệu global Cart với AIMS
+     * Sử dụng chung một dữ liệu global Cart với AIMS   
      * @param ignoredActionEvent ignored
      */
     @FXML
