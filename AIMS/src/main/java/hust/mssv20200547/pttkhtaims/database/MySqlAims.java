@@ -13,7 +13,7 @@ import java.util.*;
 public class MySqlAims implements IDatabase{
     private static final org.slf4j.Logger LOGGER_MY_SQL_AIMS = org.slf4j.LoggerFactory.getLogger(MySqlAims.class);
     @Override
-    public Map<Media, Long> get(Collection<Media> medias) throws SQLException {
+    public Map<Media, Long> get(Collection<Media> medias) throws SQLException {  // Control coupling
         List<Long> ids = medias.stream().map(Media::getId).toList();
 
         return accessDB((mysql) -> {
