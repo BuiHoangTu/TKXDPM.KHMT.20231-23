@@ -31,7 +31,7 @@ The recommended structure is as follows:
   <br>
   <!-- Bui Hoang Tu -->
   <details>
-    <summary>Team Member 1</summary>
+    <summary>Bui Hoang Tu</summary>
     <br>
 
     - Assigned tasks:
