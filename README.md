@@ -85,7 +85,6 @@ The recommended structure is as follows:
 
   </details>
 
-  <!-- Member 4 -->
   <!-- Nguyễn Tiến Tuấn -->
   <details>
     <summary>Team Member 4</summary>
