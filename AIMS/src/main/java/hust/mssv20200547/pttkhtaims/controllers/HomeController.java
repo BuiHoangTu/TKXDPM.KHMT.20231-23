@@ -22,6 +22,10 @@ import java.util.ResourceBundle;
 /**
  * Control coupling với MediaInStoreController
  */
+
+/**
+ * Procedural Cohesion do các hàm searchMedias, setMedias nên để ở class Media
+ */
 public class HomeController implements Initializable {
     private static final IDatabase MYSQL = new MySqlAims();
 
