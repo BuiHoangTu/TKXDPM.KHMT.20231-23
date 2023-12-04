@@ -147,7 +147,7 @@ The recommended structure is as follows:
       - Evaluate cohesion in HomeController
 
     - Implementation details:
-      - Pull Request(s): #9
+      - Pull Request(s): #14
       - Specific implementation details:
         - Component này có Procedural Cohesion do các hàm searchMedias, setMedias nên để ở class Media
 
