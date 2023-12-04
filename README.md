@@ -55,7 +55,7 @@ The recommended structure is as follows:
       - Đánh giá tính coupling của 4 hàm get, getMediaDetail, searchMedias, accessDB trong file MySqlAims.java
 
     - Implementation details:
-      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Pull Request(s): #5
       - Specific implementation details:
         - Hàm get: Control coupling vì bên trong hàm có kiểm tra điều kiện if...else.. phân luồng
         - Hàm getMediaDetail: Control coupling vì bên trong hàm có kiểm tra điều kiện if...else.. (kiểm tra xem là CD hay DVD) phân luồng
@@ -131,7 +131,7 @@ The recommended structure is as follows:
       - Đánh giá tính cohesion trong folder database
 
     - Implementation details:
-      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Pull Request(s): #10
       - Specific implementation details:
         - Hàm get() trong MySqlAims: Sequential Cohesion vì output của get() là đầu vào của hàm khác
         - Hàm getMediaDetail() trong MySqlAims: Sequential Cohesion vì output của getMediaDetail() là đầu vào của hàm khác
