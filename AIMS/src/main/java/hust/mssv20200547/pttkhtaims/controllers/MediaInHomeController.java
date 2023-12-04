@@ -17,7 +17,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Common coupling với AIMS do setMedia  
+ * Common coupling với AIMS do setMedia
+ * Cohesion: Functional: Các thành phần gắn kết với nhau để thực hiện chức năng kiểm soát hoạt động của màn hình media
  */
 public class MediaInHomeController implements Initializable {
     private Media m;

@@ -112,11 +112,11 @@ The recommended structure is as follows:
     <br>
 
     - Assigned tasks:
-      - Evaluate coupling in MediaInHomeController
+      - Evaluate cohesion in MediaInHomeController, PlaceOrderService
 
 
     - Implementation details:
-      - Pull Request(s): #8
+      - Pull Request(s): #12
       - Specific implementation details:
         - Adding comment to classes
 
