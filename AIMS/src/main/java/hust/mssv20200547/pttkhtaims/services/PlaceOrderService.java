@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+
+/**
+ * Cohesion: Temporal: Các thành phần thực hiện cùng thời điểm (khi khách hàng điền thông tin)
+ */
 public class PlaceOrderService implements IPlaceOrderService {
     @Override
     public boolean validatePhoneNumber(String phoneNumber) {
