@@ -103,6 +103,81 @@ The recommended structure is as follows:
 
 </details>
 
+<details>
+  <summary> W10: 04/12/2023~04/12/2023 </summary>
+  <br>
+  <!-- Bui Hoang Tu -->
+  <details>
+    <summary>Bui Hoang Tu</summary>
+    <br>
+
+    - Assigned tasks:
+      - Evaluate coupling in MediaInHomeController
+
+
+    - Implementation details:
+      - Pull Request(s): #8
+      - Specific implementation details:
+        - Adding comment to classes
+
+  </details>
+
+  <!-- Ngô Văn Tuấn -->
+  <details>
+    <summary>Ngô Văn Tuấn</summary>
+    <br>
+
+    - Assigned tasks:
+      - Đánh giá tính cohesion trong folder database
+
+    - Implementation details:
+      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Specific implementation details:
+        - Hàm get() trong MySqlAims: Sequential Cohesion vì output của get() là đầu vào của hàm khác
+        - Hàm getMediaDetail() trong MySqlAims: Sequential Cohesion vì output của getMediaDetail() là đầu vào của hàm khác
+        - Hàm searchMedias() trong MySqlAims: Sequential Cohesion vì output của searchMedias() là đầu vào của hàm khác
+
+  </details>
+
+  <!-- Member 3 -->
+  <details>
+    <summary>Team Member 1</summary>
+    <br>
+
+    - Assigned tasks:
+      - Task 1
+      - Task 2
+      - ...
+
+    - Implementation details:
+      - Pull Request(s): #9
+      - Specific implementation details:
+        - Describe specific in detail what you did last week
+        - You can attach images if you want
+
+  </details>
+
+  <!-- Member 4 -->
+  <details>
+    <summary>Team Member 1</summary>
+    <br>
+
+    - Assigned tasks:
+      - Task 1
+      - Task 2
+      - ...
+
+    - Implementation details:
+      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Specific implementation details:
+        - Describe specific in detail what you did last week
+        - You can attach images if you want
+
+  </details>
+  
+
+</details>
+
 ---
 
 
