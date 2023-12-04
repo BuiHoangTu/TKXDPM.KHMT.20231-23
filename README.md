@@ -75,7 +75,7 @@ The recommended structure is as follows:
       - ...
 
     - Implementation details:
-      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Pull Request(s): #9
       - Specific implementation details:
         - Describe specific in detail what you did last week
         - You can attach images if you want
