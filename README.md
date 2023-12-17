@@ -214,12 +214,12 @@ The recommended structure is as follows:
     <br>
 
     - Assigned tasks:
-      - 
+      - Đánh giá tính SOLID trong các file IPayOrderService.java, IDatabase.java, Cart.java
 
     - Implementation details:
-      - Pull Request(s): 
+      - Pull Request(s): #16
       - Specific implementation details:
-        - 
+        - Đánh giá tính SOLID trong các file IPayOrderService.java, IDatabase.java, Cart.java
 
   </details>
 

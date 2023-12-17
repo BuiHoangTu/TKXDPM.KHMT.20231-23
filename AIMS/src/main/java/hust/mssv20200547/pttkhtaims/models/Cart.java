@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+ // SOLID: Thỏa mãn single responsibility principle.
+
 public class Cart implements Map< Media, Long> {
     private final Map< Media, Long> content = new HashMap<>();
 
