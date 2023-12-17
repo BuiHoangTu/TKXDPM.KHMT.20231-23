@@ -174,6 +174,76 @@ The recommended structure is as follows:
 
 </details>
 
+<details>
+  <summary> W11: 11/12/2023~17/12/2023 </summary>
+  <br>
+  <!-- Bui Hoang Tu -->
+  <details>
+    <summary>Bui Hoang Tu</summary>
+    <br>
+
+    - Assigned tasks:
+      - 
+
+
+    - Implementation details:
+      - Pull Request(s): 
+      - Specific implementation details:
+        - 
+
+  </details>
+
+  <!-- Ngô Văn Tuấn -->
+  <details>
+    <summary>Ngô Văn Tuấn</summary>
+    <br>
+
+    - Assigned tasks:
+      - Đánh giá tính SOLID trong các file Book.java, Card.java
+
+    - Implementation details:
+      - Pull Request(s): #15
+      - Specific implementation details:
+        - Các class đánh giá gồm: Book.java,  Card.java
+
+  </details>
+
+  <!-- Bùi Anh Tuấn -->
+  <details>
+    <summary>Bùi Anh Tuấn</summary>
+    <br>
+
+    - Assigned tasks:
+      - 
+
+    - Implementation details:
+      - Pull Request(s): 
+      - Specific implementation details:
+        - 
+
+  </details>
+
+  <!-- Member 4 -->
+  <details>
+    <summary>Team Member 1</summary>
+    <br>
+
+    - Assigned tasks:
+      - Task 1
+      - Task 2
+      - ...
+
+    - Implementation details:
+      - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+      - Specific implementation details:
+        - Describe specific in detail what you did last week
+        - You can attach images if you want
+
+  </details>
+  
+
+</details>
+
 ---
 
 
