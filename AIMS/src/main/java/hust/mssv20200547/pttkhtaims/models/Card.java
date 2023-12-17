@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 @Getter
 public class Card {
+    // SOLID: The open closed principle: vì class này có thể mở rộng thêm các hàm validate nữa, tuy nhiên khó để chỉnh sửa lại bản thân các hàm
     private static final int CARD_HOLDER_NAME_MAX_LENGTH = 50;
     private static final int CARD_NUMBER_LENGTH = 16;
     private static final int SECURITY_CODE_LENGTH = 3;
