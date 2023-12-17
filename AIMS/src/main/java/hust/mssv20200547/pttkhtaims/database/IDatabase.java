@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+// Sử dụng interface để giảm sự phụ thuộc giữa class bậc cao và thấp
 public interface IDatabase {
     Map<Media, Long> get(Collection<Media> medias) throws SQLException;
 
