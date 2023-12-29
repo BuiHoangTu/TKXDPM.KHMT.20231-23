@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minWidth="-Infinity" prefHeight="200.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hust.mssv20200547.pttkhtaims.controllers.MediaInHomeController">
+<AnchorPane minWidth="-Infinity" prefHeight="200.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hust.mssv20200547.pttkhtaims.controllers.MediaInSquareController">
    <children>
       <VBox prefHeight="200.0" prefWidth="600.0">
          <children>
-            <Label fx:id="labelTitle" prefHeight="17.0" styleClass="h2" stylesheets="@../../../style/common.css" text="Title" />
+            <Label fx:id="labelTitle" prefHeight="17.0" styleClass="h2" stylesheets="@../style/common.css" text="Title" />
             <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="340.0">
                <children>
                   <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="img-book" />
@@ -22,25 +22,25 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Label styleClass="label-key" stylesheets="@../../../style/common.css" text="Price:" />
-                              <Label fx:id="labelPrice" layoutX="97.0" styleClass="label-value" stylesheets="@../../../style/common.css" text="Label" AnchorPane.rightAnchor="10.0" />
+                              <Label styleClass="label-key" stylesheets="@../style/common.css" text="Price:" />
+                              <Label fx:id="labelPrice" layoutX="97.0" styleClass="label-value" stylesheets="@../style/common.css" text="Label" AnchorPane.rightAnchor="10.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label styleClass="label-key" stylesheets="@../../../style/common.css" text="Available:" />
-                              <Label fx:id="labelStoreQuantity" layoutX="51.0" styleClass="label-value" stylesheets="@../../../style/common.css" text="Label" AnchorPane.rightAnchor="10.0" />
+                              <Label styleClass="label-key" stylesheets="@../style/common.css" text="Available:" />
+                              <Label fx:id="labelStoreQuantity" layoutX="51.0" styleClass="label-value" stylesheets="@../style/common.css" text="Label" AnchorPane.rightAnchor="10.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label styleClass="label-key" stylesheets="@../../../style/common.css" text="Quantity:" />
-                              <Spinner fx:id="spinnerBuyingQuantity" layoutX="78.0" prefHeight="25.0" prefWidth="56.0" stylesheets="@../../../style/common.css" />
+                              <Label styleClass="label-key" stylesheets="@../style/common.css" text="Quantity:" />
+                              <Spinner fx:id="spinnerBuyingQuantity" layoutX="78.0" prefHeight="25.0" prefWidth="56.0" stylesheets="@../style/common.css" />
                            </children>
                         </AnchorPane>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="buttonAddToCart" mnemonicParsing="false" onAction="#addToCart" stylesheets="@../../../style/common.css" text="Add to cart">
+                              <Button fx:id="buttonAddToCart" mnemonicParsing="false" onAction="#addToCart" stylesheets="@../style/common.css" text="Add to cart">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>

@@ -1,18 +1,15 @@
 package hust.mssv20200547.pttkhtaims.services;
 
-import hust.mssv20200547.pttkhtaims.database.IDatabase;
+import hust.mssv20200547.pttkhtaims.database.IMediaSource;
 import hust.mssv20200547.pttkhtaims.models.Cart;
 import hust.mssv20200547.pttkhtaims.models.Media;
+import hust.mssv20200547.pttkhtaims.models.Order;
 
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-
-/**
- * Cohesion: Temporal: Các thành phần thực hiện cùng thời điểm (khi khách hàng điền thông tin)
- */
 public class PlaceOrderService implements IPlaceOrderService {
     @Override
     public boolean validatePhoneNumber(String phoneNumber) {
@@ -23,7 +20,7 @@ public class PlaceOrderService implements IPlaceOrderService {
     }
 
     @Override
-    public Map<Media, Long> validateProductQuantity(IDatabase database, Cart cart) throws SQLException {
+    public Map<Media, Long> validateProductQuantity(IMediaSource database, Cart cart) throws SQLException {
         Map<Media, Long> infeasibleProducts = new HashMap<>();
 
         Map<Media, Long> inDBMedias = database.get(cart.keySet());
@@ -51,6 +48,11 @@ public class PlaceOrderService implements IPlaceOrderService {
         final Pattern regex = Pattern.compile(nameRegex);
 
         return regex.matcher(name).matches();
+    }
+
+    @Override
+    public long calculateDeliveryFee(Order o) {
+        return 0;
     }
 
 }

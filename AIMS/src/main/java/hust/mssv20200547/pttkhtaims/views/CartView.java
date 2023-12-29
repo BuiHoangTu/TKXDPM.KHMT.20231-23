@@ -1,10 +1,13 @@
 package hust.mssv20200547.pttkhtaims.views;
 
+import hust.mssv20200547.pttkhtaims.AIMS;
+import hust.mssv20200547.pttkhtaims.controllers.CartController;
+
 import java.io.IOException;
 import java.net.URL;
 
 public class CartView extends BaseView{
-    private static final URL PATH = CartView.class.getResource("");
+    private static final URL PATH = CartView.class.getResource("/fxml/cart-screen-view.fxml");
 
     /**
      * prepare a new scene
@@ -13,10 +16,12 @@ public class CartView extends BaseView{
      * @throws NullPointerException if cant find fxml file
      */
     public CartView() throws IOException {
+        super(PATH);
+        this.getController().setCart(AIMS.cart);
     }
 
     @Override
-    protected URL getSceneURL() throws NullPointerException {
-        return PATH;
+    public CartController getController() {
+        return (CartController) super.getController();
     }
 }

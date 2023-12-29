@@ -1,6 +1,5 @@
 package hust.mssv20200547.pttkhtaims.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

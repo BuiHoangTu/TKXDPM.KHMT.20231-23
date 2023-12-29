@@ -1,16 +1,16 @@
 package hust.mssv20200547.pttkhtaims.views;
 
 import hust.mssv20200547.pttkhtaims.controllers.HomeController;
-import hust.mssv20200547.pttkhtaims.database.IDatabase;
-import hust.mssv20200547.pttkhtaims.database.MySqlAims;
+import hust.mssv20200547.pttkhtaims.database.IMediaSource;
+import hust.mssv20200547.pttkhtaims.database.mysql.MediaSourceMySql;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 
 public class HomeView extends BaseView {
-    private static final URL PATH = HomeView.class.getResource("/hust/mssv20200547/pttkhtaims/home-screen-view.fxml");
-    private static final IDatabase MYSQL = new MySqlAims();
+    private static final URL PATH = HomeView.class.getResource("/fxml/home-screen-view.fxml");
+    private static final IMediaSource MYSQL = new MediaSourceMySql();
 
     /**
      * Constructor
@@ -19,14 +19,14 @@ public class HomeView extends BaseView {
      * @throws NullPointerException if mainStage is null
      */
     public HomeView() throws IOException, SQLException {
-        super();
+        super(PATH);
 
         HomeController controller = this.loader.getController();
         controller.setMedias(MYSQL.searchMedias("category", "", 20));
     }
 
     @Override
-    protected URL getSceneURL() {
-        return PATH;
+    public HomeController getController() {
+        return (HomeController) super.getController();
     }
 }

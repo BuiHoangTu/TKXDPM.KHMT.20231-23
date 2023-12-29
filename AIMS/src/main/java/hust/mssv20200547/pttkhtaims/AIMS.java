@@ -20,7 +20,7 @@ public class AIMS extends Application {
         primaryStage.setMaximized(true);
 
         // splash with fading
-        StackPane root = FXMLLoader.load(Objects.requireNonNull(AIMS.class.getResource("/hust/mssv20200547/pttkhtaims/splash-screen-view.fxml")));
+        StackPane root = FXMLLoader.load(Objects.requireNonNull(AIMS.class.getResource("/fxml/splash-screen-view.fxml")));
         Scene rootScene = new Scene(root);
         primaryStage.setScene(rootScene);
         primaryStage.show();
@@ -42,7 +42,6 @@ public class AIMS extends Application {
 
         // app run
         fadeAppear.play();
-
     }
 
     public static void main(String[] args) {

@@ -1,16 +1,13 @@
 package hust.mssv20200547.pttkhtaims.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
 public class Book extends Media{
-    // SOLID: The single responsibility principle. Vì lớp Book chỉ có duy nhất 1 trách nhiệm là khởi tạo đối tượng
     private String genre;
     private String authors;
     private String cover;

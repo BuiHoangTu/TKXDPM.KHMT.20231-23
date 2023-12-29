@@ -2,8 +2,6 @@ package hust.mssv20200547.pttkhtaims.services;
 
 import hust.mssv20200547.pttkhtaims.models.Card;
 
-import java.util.regex.Pattern;
-
 public class PayOrderService implements IPayOrderService {
 
     @Override

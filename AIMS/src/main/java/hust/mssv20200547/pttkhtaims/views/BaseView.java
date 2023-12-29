@@ -1,19 +1,15 @@
 package hust.mssv20200547.pttkhtaims.views;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import lombok.Getter;
-import lombok.NonNull;
 
 import java.io.IOException;
 import java.net.URL;
 
 public abstract class BaseView {
-    protected final Scene scene;
-    @Getter
+    protected Scene scene;
     protected final Parent root;
     protected final FXMLLoader loader;
 
@@ -22,19 +18,16 @@ public abstract class BaseView {
      * @throws IOException if getSceneURL return null
      * @throws NullPointerException if cant find fxml file
      */
-    public BaseView() throws IOException {
-        this.loader = new FXMLLoader(this.getSceneURL());
+    public BaseView(URL sceneUrl) throws IOException {
+        this.loader = new FXMLLoader(sceneUrl);
         this.root = loader.load();
-        this.scene = new Scene(root);
     }
-
-    protected abstract URL getSceneURL() throws NullPointerException;
 
     /**
      * Apply the scene into the stage
      * @param stage stage that need to change scene
      */
-    public void apply(@NonNull Stage stage) {
+    public void apply(Stage stage) {
         var max = stage.isMaximized();
         var min = stage.isIconified();
 
@@ -48,8 +41,16 @@ public abstract class BaseView {
         }
     }
 
-    public <T> T getController() {
+    public Object getController() {
         return this.loader.getController();
     }
 
+    public Scene getScene() {
+        if (scene == null) scene = new Scene(this.root);
+        return scene;
+    }
+
+    public Parent getRoot() {
+        return root;
+    }
 }

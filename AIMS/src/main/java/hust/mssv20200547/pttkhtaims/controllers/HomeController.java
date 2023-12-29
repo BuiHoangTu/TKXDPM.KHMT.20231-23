@@ -1,9 +1,9 @@
 package hust.mssv20200547.pttkhtaims.controllers;
 
-import hust.mssv20200547.pttkhtaims.database.IDatabase;
-import hust.mssv20200547.pttkhtaims.database.MySqlAims;
+import hust.mssv20200547.pttkhtaims.database.IMediaSource;
+import hust.mssv20200547.pttkhtaims.database.mysql.MediaSourceMySql;
 import hust.mssv20200547.pttkhtaims.models.Media;
-import hust.mssv20200547.pttkhtaims.views.MediaInHomeView;
+import hust.mssv20200547.pttkhtaims.views.MediaInSquareView;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -19,15 +19,8 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-/**
- * Control coupling với MediaInStoreController 
- */
-
-/**
- * Procedural Cohesion do các hàm searchMedias, setMedias nên để ở class Media
- */
 public class HomeController implements Initializable {
-    private static final IDatabase MYSQL = new MySqlAims();
+    private static final IMediaSource MYSQL = new MediaSourceMySql();
 
     @FXML
     private RadioMenuItem radioMenuItemTitle;
@@ -66,19 +59,14 @@ public class HomeController implements Initializable {
         });
     }
 
-    /**
-     * Can thiệp vào luồng dữ liệu của Media In Store Controller   
-     * @param medias
-     * @throws IOException
-     */
     public void setMedias(Map<Media, Long> medias) throws IOException {
         var mediaEntries = medias.entrySet().stream().toList();
         var vBoxes = new VBoxNext(vBoxMedia1, vBoxMedia2, vBoxMedia3, vBoxMedia4);
         vBoxes.clearAll();
 
         for (var mediaEntry : mediaEntries) {
-            var mediaView = new MediaInHomeView();
-            MediaInHomeController mediaController = mediaView.getController();
+            var mediaView = new MediaInSquareView();
+            MediaInSquareController mediaController = mediaView.getController();
             mediaController.setMedia(mediaEntry);
             vBoxes.next().getChildren().add(mediaView.getRoot());
         }

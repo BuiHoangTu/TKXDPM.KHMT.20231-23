@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../assets/images/tickerror.png" />
+            <Image url="@../assets/images/tickerror.png" />
          </image>
       </ImageView>
       <Label id="labelErrorMessage" layoutX="238.0" layoutY="253.0" text="Error Message : ..." textAlignment="CENTER">
