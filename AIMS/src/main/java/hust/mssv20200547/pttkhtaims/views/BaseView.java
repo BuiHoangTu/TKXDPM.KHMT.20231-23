@@ -31,7 +31,7 @@ public abstract class BaseView {
         var max = stage.isMaximized();
         var min = stage.isIconified();
 
-        stage.setScene(this.scene);
+        stage.setScene(this.getScene());
 
         if (max) {
             stage.setMaximized(true);
