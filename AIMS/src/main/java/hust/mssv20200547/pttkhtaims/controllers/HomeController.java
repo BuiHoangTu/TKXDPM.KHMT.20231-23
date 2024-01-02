@@ -57,6 +57,14 @@ public class HomeController implements Initializable {
         this.cartImage.addEventHandler(EventType.ROOT, event -> {
 
         });
+
+        splitMenuBtnSearch.setOnAction((e) -> {
+            try {
+                this.searchMedias(e);
+            } catch (SQLException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     public void setMedias(Map<Media, Long> medias) throws IOException {
