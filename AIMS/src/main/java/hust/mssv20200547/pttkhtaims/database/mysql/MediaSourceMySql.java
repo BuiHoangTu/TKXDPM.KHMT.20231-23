@@ -153,15 +153,23 @@ public class MediaSourceMySql extends MysqlBase implements IMediaSource {
         LOGGER_MY_SQL_AIMS.info("Search {}: {}", searchType, searchValue );
 
         try (var mysql = openConnection()) {
-            var preparedStatement = mysql.prepareStatement(
-                    "Select id, title, category, value, price, quantity " +
-                            "From media " +
-                            "Where ? like ? " +
-                            "Limit ?"
-            );
-            preparedStatement.setString(1, searchType);
-            preparedStatement.setString(2, "%" + searchValue + "%");
-            preparedStatement.setInt(3, resQuantity);
+            PreparedStatement preparedStatement;
+            if(Objects.equals(searchType, "title")) {
+                preparedStatement = mysql.prepareStatement(
+                        "Select id, title, category, value, price, quantity " +
+                                "From media " +
+                                "Where title like ? " +
+                                "Limit ?"
+                );
+            } else {
+                preparedStatement = mysql.prepareStatement(
+                        "Select id, title, category, value, price, quantity " +
+                                "From media " +
+                                "Where category like ? " +
+                                "Limit ?");
+            }
+            preparedStatement.setString(1, "%" + searchValue.trim() + "%");
+            preparedStatement.setInt(2, resQuantity);
 
             Map<Media, Long> localRes = new HashMap<>();
             var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
