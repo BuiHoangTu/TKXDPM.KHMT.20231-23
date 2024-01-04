@@ -7,9 +7,27 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public abstract class MysqlBase implements ISql {
-    public Connection openConnection() throws SQLException {
-        var mysql = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalaims", "personal_aims", "personal_aims");
+    private static Connection CONNECTION;
 
-        return mysql;
+    private static void establishConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalaims", "personal_aims", "personal_aims");
     }
+
+    @Override
+    public Connection openConnection() throws SQLException {
+        if (CONNECTION.isClosed()) establishConnection();
+        return CONNECTION;
+    }
+
+    // @Override
+    // public Connection openConnection() throws SQLException {
+    //     var mysql = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalaims", "personal_aims", "personal_aims");
+
+    //     return mysql;
+    // }
 }
