@@ -4,6 +4,9 @@ import hust.mssv20200547.pttkhtaims.database.IMediaSource;
 import hust.mssv20200547.pttkhtaims.database.mysql.MediaSourceMySql;
 import hust.mssv20200547.pttkhtaims.models.Media;
 import hust.mssv20200547.pttkhtaims.views.MediaInSquareView;
+import hust.mssv20200547.pttkhtaims.views.OrderManageView;
+import hust.mssv20200547.pttkhtaims.views.HomeView;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -48,7 +51,8 @@ public class HomeController implements Initializable {
     private VBox vBoxMedia4;
     @FXML
     private TextField textFieldSearch;
-
+    @FXML
+    private  Button viewOrderButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,6 +97,15 @@ public class HomeController implements Initializable {
         }
     }
 
+    @FXML
+    private void openManageOrder(ActionEvent event) throws Exception{
+        // Thêm code xử lý khi nút được nhấp
+        var home = new OrderManageView();
+        home.switchToOrderManageView();
+        System.out.println("View Order Button clicked!");
+        System.out.println(home);
+    }
+
 
     private static class VBoxNext {
         private final VBox[] vBoxes;
@@ -118,4 +131,6 @@ public class HomeController implements Initializable {
 
 
     }
+
+
 }
