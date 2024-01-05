@@ -103,6 +103,13 @@ public class HomeController implements Initializable {
         System.out.println("View Order Button clicked!");
         System.out.println(home);
     }
+    public void openCart(MouseEvent ignoredMouseEvent) throws IOException {
+        var cartView = new CartView();
+
+        cartView.apply((Stage) cartImage.getScene().getWindow());
+
+        cartView.getController().setCart(AIMS.cart);
+    }
 
     public void openCart(MouseEvent ignoredMouseEvent) throws IOException {
         var cartView = new CartView();
