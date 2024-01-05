@@ -6,6 +6,9 @@ import hust.mssv20200547.pttkhtaims.services.IStoreService;
 import hust.mssv20200547.pttkhtaims.services.StoreService;
 import hust.mssv20200547.pttkhtaims.views.CartView;
 import hust.mssv20200547.pttkhtaims.views.MediaInSquareView;
+import hust.mssv20200547.pttkhtaims.views.OrderManageView;
+import hust.mssv20200547.pttkhtaims.views.HomeView;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,7 +55,8 @@ public class HomeController implements Initializable {
     private VBox vBoxMedia4;
     @FXML
     private TextField textFieldSearch;
-
+    @FXML
+    private  Button viewOrderButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,6 +96,14 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    private void openManageOrder(ActionEvent event) throws Exception{
+        // Thêm code xử lý khi nút được nhấp
+        var home = new OrderManageView();
+        home.switchToOrderManageView();
+        System.out.println("View Order Button clicked!");
+        System.out.println(home);
+    }
+
     public void openCart(MouseEvent ignoredMouseEvent) throws IOException {
         var cartView = new CartView();
 
@@ -125,4 +137,6 @@ public class HomeController implements Initializable {
 
 
     }
+
+
 }
