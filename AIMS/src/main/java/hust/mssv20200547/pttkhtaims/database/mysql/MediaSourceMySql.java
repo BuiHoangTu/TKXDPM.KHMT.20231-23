@@ -7,205 +7,236 @@ import hust.mssv20200547.pttkhtaims.models.*;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class MediaSourceMySql extends MysqlBase implements IMediaSource {
+    private enum SearchOption{
+        TITLE("title"),
+        CATEGORY("category");
+
+        public final String str;
+
+        SearchOption(String str) {
+            this.str = str;
+        }
+    }
     private static final org.slf4j.Logger LOGGER_MY_SQL_AIMS = org.slf4j.LoggerFactory.getLogger(MediaSourceMySql.class);
+    private Connection getConnection() throws SQLException {
+        return this.openConnection();
+    }
+
     @Override
     public Map<Media, Long> get(Collection<Media> medias) throws SQLException {
         List<Long> ids = medias.stream().map(Media::getId).toList();
 
-        try (var mysql = openConnection()) {
-            var preparedStatement = mysql.prepareStatement(
-                    "Select id, title, category, value, price, quantity " +
-                    "From media " +
-                    "Where id In (?)"
-            );
-            var arrayId = mysql.createArrayOf("INTEGER", ids.toArray());
-            preparedStatement.setArray(1, arrayId);
+        var mysql = getConnection();
+        var preparedStatement = mysql.prepareStatement(
+                "Select id, title, category, value, price, quantity " +
+                        "From media " +
+                        "Where id In (?)"
+        );
+        var arrayId = mysql.createArrayOf("INTEGER", ids.toArray());
+        preparedStatement.setArray(1, arrayId);
 
-            Map<Media, Long> res = new HashMap<>();
-            var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
-            while (rsIte.next()) {
-                long id = rsIte.getLong();
-                String title = rsIte.getString();
-                String category = rsIte.getString();
-                long value = rsIte.getLong();
-                long price = rsIte.getLong();
-                long quantity = rsIte.getLong();
+        Map<Media, Long> res = new HashMap<>();
+        var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
+        while (rsIte.next()) {
+            long id = rsIte.getLong();
+            String title = rsIte.getString();
+            String category = rsIte.getString();
+            long value = rsIte.getLong();
+            long price = rsIte.getLong();
+            long quantity = rsIte.getLong();
 
-                switch (category.toUpperCase(Locale.ROOT)) {
-                    case "BOOK" -> res.put(
-                            new Book(id, title, price, value, null, null, null, null, null, null, 0),
-                            quantity
-                    );
-                    case "CD" -> res.put(
-                            new CD(id, title, price, value, null, null, null, null, null),
-                            quantity
-                    );
-                    case "DIGITALVIDEODISC" -> res.put(
-                            new DigitalVideoDisc(id, title, price, value, null, null, null, null, null, null, null, null),
-                            quantity
-                    );
-                    case "LONGPLAYRECORD" -> res.put(
-                            new LongPlayRecord(id, title, price, value, null, null, null, null, null, null, null, null),
-                            quantity
-                    );
-                    default -> res.put(new Media(id, title, price, value) {}, quantity);
-                }
+            switch (category.toUpperCase(Locale.ROOT)) {
+                case "BOOK" -> res.put(
+                        new Book(id, title, price, value, null, null, null, null, null, null, 0),
+                        quantity
+                );
+                case "CD" -> res.put(
+                        new CD(id, title, price, value, null, null, null, null, null),
+                        quantity
+                );
+                case "DIGITALVIDEODISC" -> res.put(
+                        new DigitalVideoDisc(id, title, price, value, null, null, null, null, null, null, null, null),
+                        quantity
+                );
+                case "LONGPLAYRECORD" -> res.put(
+                        new LongPlayRecord(id, title, price, value, null, null, null, null, null, null, null, null),
+                        quantity
+                );
+                default -> res.put(new Media(id, title, price, value) {}, quantity);
             }
-
-            return res;
         }
+
+        return res;
     }
+
 
     @Override
     public <M extends Media> M getMediaDetail(M media) throws SQLException {
-        try (var mysql = openConnection()) {
-            if (media instanceof Book book) {
-                var preparedStatement = mysql.prepareStatement(
-                        "Select authors, cover, publisher, publicationDate, language, numberOfPages, genres " +
-                        "From book " +
-                        "Where id = ?"
-                );
-                preparedStatement.setLong(1, media.getId());
+        var mysql = getConnection();
+        if (media instanceof Book book) {
+            var preparedStatement = mysql.prepareStatement(
+                    "Select authors, cover, publisher, publicationDate, language, numberOfPages, genres " +
+                            "From book " +
+                            "Where id = ?"
+            );
+            preparedStatement.setLong(1, media.getId());
 
-                var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
-                if (rsIte.next()) {
-                    book.setAuthors(rsIte.getString());
-                    book.setCover(rsIte.getString());
-                    book.setPublisher(rsIte.getString());
-                    book.setPublicationDate(rsIte.getDate().toLocalDate());
-                    book.setLanguage(rsIte.getString());
-                    book.setNumberOfPages(rsIte.getLong());
-                    book.setGenre(rsIte.getString());
-                    
-                    return (M) book;
-                } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
-            } else if (media instanceof CD cd) {
-                var preparedStatement = mysql.prepareStatement(
-                        "Select artists, recordLabel, trackList, genres, publicationDate " +
-                                "From cd " +
-                                "Where id = ?"
-                );
-                preparedStatement.setLong(1, media.getId());
+            var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
+            if (rsIte.next()) {
+                book.setAuthors(rsIte.getString());
+                book.setCover(rsIte.getString());
+                book.setPublisher(rsIte.getString());
+                book.setPublicationDate(rsIte.getDate().toLocalDate());
+                book.setLanguage(rsIte.getString());
+                book.setNumberOfPages(rsIte.getLong());
+                book.setGenre(rsIte.getString());
 
-                var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
-                if (rsIte.next()) {
-                    cd.setArtist(rsIte.getString());
-                    cd.setRecordLabel(rsIte.getString());
-                    cd.setTrackList(List.of(rsIte.getString().split(",")));
-                    cd.setGenre(rsIte.getString());
-                    cd.setPublicationDate(rsIte.getDate().toLocalDate());
+                return (M) book;
+            } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
+        } else if (media instanceof CD cd) {
+            var preparedStatement = mysql.prepareStatement(
+                    "Select artists, recordLabel, trackList, genres, publicationDate " +
+                            "From cd " +
+                            "Where id = ?"
+            );
+            preparedStatement.setLong(1, media.getId());
 
-                    return (M) cd;
-                } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
-            } else if (media instanceof DigitalVideoDisc dvd) {
-                var preparedStatement = mysql.prepareStatement(
-                        "Select discFormat, director, runTime, studio, language, subtitles, publicationDate, genres " +
-                                "From digital_video_disc " +
-                                "Where id = ?"
-                );
-                preparedStatement.setLong(1, media.getId());
+            var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
+            if (rsIte.next()) {
+                cd.setArtist(rsIte.getString());
+                cd.setRecordLabel(rsIte.getString());
+                cd.setTrackList(List.of(rsIte.getString().split(",")));
+                cd.setGenre(rsIte.getString());
+                cd.setPublicationDate(rsIte.getDate().toLocalDate());
 
-                var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
-                if (rsIte.next()) {
-                    dvd.setDiscFormat(rsIte.getString());
-                    dvd.setDirector(rsIte.getString());
-                    dvd.setRuntime(rsIte.getTime().toLocalTime());
-                    dvd.setStudio(rsIte.getString());
-                    dvd.setLanguage(rsIte.getString());
-                    dvd.setSubtitles(rsIte.getString());
-                    dvd.setPublicationDate(rsIte.getDate().toLocalDate());
-                    dvd.setGenre(rsIte.getString());
+                return (M) cd;
+            } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
+        } else if (media instanceof DigitalVideoDisc dvd) {
+            var preparedStatement = mysql.prepareStatement(
+                    "Select discFormat, director, runTime, studio, language, subtitles, publicationDate, genres " +
+                            "From digital_video_disc " +
+                            "Where id = ?"
+            );
+            preparedStatement.setLong(1, media.getId());
 
-                    return (M) dvd;
-                } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
-            } else if (media instanceof LongPlayRecord lpr) {
-                var preparedStatement = mysql.prepareStatement(
-                        "Select discFormat, director, runTime, studio, language, subtitles, publicationDate, genres " +
-                                "From long_play_record " +
-                                "Where id = ?"
-                );
-                preparedStatement.setLong(1, media.getId());
+            var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
+            if (rsIte.next()) {
+                dvd.setDiscFormat(rsIte.getString());
+                dvd.setDirector(rsIte.getString());
+                dvd.setRuntime(rsIte.getTime().toLocalTime());
+                dvd.setStudio(rsIte.getString());
+                dvd.setLanguage(rsIte.getString());
+                dvd.setSubtitles(rsIte.getString());
+                dvd.setPublicationDate(rsIte.getDate().toLocalDate());
+                dvd.setGenre(rsIte.getString());
 
-                var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
-                if (rsIte.next()) {
-                    lpr.setDiscFormat(rsIte.getString());
-                    lpr.setDirector(rsIte.getString());
-                    lpr.setRuntime(rsIte.getTime().toLocalTime());
-                    lpr.setStudio(rsIte.getString());
-                    lpr.setLanguage(rsIte.getString());
-                    lpr.setSubtitles(rsIte.getString());
-                    lpr.setPublicationDate(rsIte.getDate().toLocalDate());
-                    lpr.setGenre(rsIte.getString());
+                return (M) dvd;
+            } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
+        } else if (media instanceof LongPlayRecord lpr) {
+            var preparedStatement = mysql.prepareStatement(
+                    "Select discFormat, director, runTime, studio, language, subtitles, publicationDate, genres " +
+                            "From long_play_record " +
+                            "Where id = ?"
+            );
+            preparedStatement.setLong(1, media.getId());
 
-                    return (M) lpr;
-                } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
-            } else throw new FeatureNotAvailableException("This type of media is not implemented: " + media.getClass());
-        }
+            var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
+            if (rsIte.next()) {
+                lpr.setDiscFormat(rsIte.getString());
+                lpr.setDirector(rsIte.getString());
+                lpr.setRuntime(rsIte.getTime().toLocalTime());
+                lpr.setStudio(rsIte.getString());
+                lpr.setLanguage(rsIte.getString());
+                lpr.setSubtitles(rsIte.getString());
+                lpr.setPublicationDate(rsIte.getDate().toLocalDate());
+                lpr.setGenre(rsIte.getString());
+
+                return (M) lpr;
+            } else throw new SQLException("Media continuous is broken at ID = " + media.getId());
+        } else throw new FeatureNotAvailableException("This type of media is not implemented: " + media.getClass());
+
     }
 
     @Override
-    public Map<Media, Long> searchMedias(String searchType, String searchValue, int resQuantity) throws SQLException {
-        LOGGER_MY_SQL_AIMS.info("Search {}: {}", searchType, searchValue );
-
-        try (var mysql = openConnection()) {
-            PreparedStatement preparedStatement;
-            if(Objects.equals(searchType, "title")) {
-                preparedStatement = mysql.prepareStatement(
-                        "Select id, title, category, value, price, quantity " +
-                                "From media " +
-                                "Where title like ? " +
-                                "Limit ?"
-                );
-            } else {
-                preparedStatement = mysql.prepareStatement(
-                        "Select id, title, category, value, price, quantity " +
-                                "From media " +
-                                "Where category like ? " +
-                                "Limit ?");
-            }
-            preparedStatement.setString(1, "%" + searchValue.trim() + "%");
-            preparedStatement.setInt(2, resQuantity);
-
-            Map<Media, Long> localRes = new HashMap<>();
-            var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
-            while (rsIte.next()) {
-                long id = rsIte.getLong();
-                String title = rsIte.getString();
-                String category = rsIte.getString();
-                long value = rsIte.getLong();
-                long price = rsIte.getLong();
-                long quantity = rsIte.getLong();
-
-                switch (category.toLowerCase(Locale.ROOT)) {
-                    case "book" -> localRes.put(
-                            new Book(id, title, price, value, null, null, null, null, null, null, 0),
-                            quantity
-                    );
-                    case "cd" -> localRes.put(
-                            new CD(id, title, price, value, null, null, null, null, null),
-                            quantity
-                    );
-                    case "digital_video_disc" -> localRes.put(
-                            new DigitalVideoDisc(id, title, price, value, null, null, null, null, null, null, null, null),
-                            quantity
-                    );
-                    case "long_play_record" -> localRes.put(
-                            new LongPlayRecord(id, title, price, value, null, null, null, null, null, null, null, null),
-                            quantity
-                    );
-                    default -> localRes.put(new Media(id, title, price, value) {}, quantity);
-                }
-            }
-
-            return localRes;
-        }
+    public Map<Media, Long> searchMediaTitleInStore(String title, int limit) throws SQLException {
+        return this.searchMedias(SearchOption.TITLE, title, limit);
     }
-    
+
+    @Override
+    public Map<Media, Long> searchMediaCategoryInStore(String category, int limit) throws SQLException {
+        return this.searchMedias(SearchOption.CATEGORY, category, limit);
+    }
+
+
+    private Map<Media, Long> searchMedias(SearchOption searchType, String searchValue, int resQuantity) throws SQLException {
+        LOGGER_MY_SQL_AIMS.info("Search {}: {}", searchType.str, searchValue);
+
+        var mysql = getConnection();
+        var preparedStatement = mysql.prepareStatement(
+                "Select id, title, category, value, price, quantity " +
+                        "From media " +
+                        "Where "+ searchType.str +" like ? " +
+                        "Limit ?"
+        );
+        preparedStatement.setString(1, "%" + searchValue + "%");
+        preparedStatement.setInt(2, resQuantity);
+
+        Map<Media, Long> localRes = new HashMap<>();
+        var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
+        while (rsIte.next()) {
+            long id = rsIte.getLong();
+            String title = rsIte.getString();
+            String category = rsIte.getString();
+            long value = rsIte.getLong();
+            long price = rsIte.getLong();
+            long quantity = rsIte.getLong();
+
+            switch (category.toLowerCase(Locale.ROOT)) {
+                case "book" -> localRes.put(
+                        new Book(id, title, price, value, null, null, null, null, null, null, 0),
+                        quantity
+                );
+                case "cd" -> localRes.put(
+                        new CD(id, title, price, value, null, null, null, null, null),
+                        quantity
+                );
+                case "digital_video_disc" -> localRes.put(
+                        new DigitalVideoDisc(id, title, price, value, null, null, null, null, null, null, null, null),
+                        quantity
+                );
+                case "long_play_record" -> localRes.put(
+                        new LongPlayRecord(id, title, price, value, null, null, null, null, null, null, null, null),
+                        quantity
+                );
+                default -> localRes.put(new Media(id, title, price, value) {
+                }, quantity);
+            }
+        }
+
+        return localRes;
+
+    }
+
+    @Override
+    public void reduceMedias(Map<Media, Long> medias) throws SQLException {
+        if (medias.isEmpty()) return;
+
+        var mysql = getConnection();
+        var prepareStm = mysql.prepareStatement("UPDATE media SET quantity = quantity - ? WHERE id = ?");
+
+        for (var entry : medias.entrySet()) {
+            prepareStm.setLong(1, entry.getValue());
+            prepareStm.setLong(2, entry.getKey().getId());
+            prepareStm.addBatch();
+        }
+
+        prepareStm.executeBatch();
+    }
 
     @SuppressWarnings("all")
     private static class ResultSetColIterator {
