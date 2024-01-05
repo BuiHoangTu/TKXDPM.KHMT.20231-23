@@ -2,6 +2,11 @@ package hust.mssv20200547.pttkhtaims.controllers;
 
 import hust.mssv20200547.pttkhtaims.AIMS;
 import hust.mssv20200547.pttkhtaims.models.*;
+import hust.mssv20200547.pttkhtaims.views.BaseView;
+import hust.mssv20200547.pttkhtaims.views.medias.BookView;
+import hust.mssv20200547.pttkhtaims.views.medias.CdView;
+import hust.mssv20200547.pttkhtaims.views.medias.DvdView;
+import hust.mssv20200547.pttkhtaims.views.medias.LrpView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,13 +16,16 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MediaInSquareController implements Initializable {
-    protected Media m;
+    protected Map.Entry<Media, Long> entry;
     @FXML
     protected ImageView imageView;
     @FXML
@@ -40,7 +48,9 @@ public class MediaInSquareController implements Initializable {
     }
 
     public void setMedia(Map.Entry<Media, Long> mediaEntry) {
-        this.m = mediaEntry.getKey();
+        this.entry = mediaEntry;
+
+        var m = entry.getKey();
         this.labelTitle.setText(m.getTitle());
         this.labelPrice.setText(String.valueOf(m.getPrice()));
         this.labelStoreQuantity.setText(String.valueOf(mediaEntry.getValue()));
@@ -67,6 +77,31 @@ public class MediaInSquareController implements Initializable {
         this.spinnerValueFactory.setMax(quantityLeft);
         this.spinnerValueFactory.setValue(0);
 
-        AIMS.cart.put(m, (long) quantityBuy);
+        AIMS.cart.put(entry.getKey(), (long) quantityBuy);
+    }
+
+    @FXML
+    private void goToMediaDetail(MouseEvent ignoredMouseEvent) throws IOException {
+        var m = entry.getKey();
+        BaseView baseView;
+        if (m instanceof Book) {
+            var bookView = new BookView();
+            bookView.getController().setMedia(entry);
+            baseView = bookView;
+        } else if (m instanceof CD) {
+            var cdView = new CdView();
+            cdView.getController().setMedia(entry);
+            baseView = cdView;
+        } else if (m instanceof DigitalVideoDisc) {
+            var dvdView = new DvdView();
+            dvdView.getController().setMedia(entry);
+            baseView = dvdView;
+        } else if (m instanceof LongPlayRecord) {
+            var lrpView = new LrpView();
+            lrpView.getController().setMedia(entry);
+            baseView = lrpView;
+        } else return;
+
+        baseView.apply((Stage) labelTitle.getScene().getWindow());
     }
 }
