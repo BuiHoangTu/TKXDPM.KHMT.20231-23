@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minWidth="-Infinity" prefHeight="368.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hust.mssv20200547.pttkhtaims.controllers.medias.CdController">
+   <children>
+      <VBox prefHeight="368.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="labelTitle" prefHeight="17.0" styleClass="h2" stylesheets="@../../style/common.css" text="Title" />
+            <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="492.0">
+               <children>
+                  <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="img-book">
+                     <image>
+                        <Image url="@../../assets/images/aims_cover_image.png" />
+                     </image></ImageView>
+                  <VBox prefHeight="332.0" prefWidth="344.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Artists:" />
+                              <Label fx:id="labelArtists" styleClass="label-value" stylesheets="@../../style/common.css" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Record Label:" />
+                              <Label fx:id="labelRecordLabel" styleClass="label-value" stylesheets="@../../style/common.css" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Track List:" />
+                              <Label fx:id="labelTrackList" styleClass="label-value" stylesheets="@../../style/common.css" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Publication Date:" />
+                              <Label fx:id="labelPublicationDate" styleClass="label-value" stylesheets="@../../style/common.css" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Genres:" />
+                              <Label fx:id="labelGenres" styleClass="label-value" stylesheets="@../../style/common.css" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Price:" />
+                              <Label fx:id="labelPrice" styleClass="label-value" stylesheets="@../../style/common.css" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Available:" />
+                              <Label fx:id="labelStoreQuantity" styleClass="label-value" stylesheets="@../../style/common.css" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label styleClass="label-key" stylesheets="@../../style/common.css" text="Quantity:" />
+                              <Spinner fx:id="spinnerBuyingQuantity" prefHeight="25.0" prefWidth="56.0" stylesheets="@../../style/common.css" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="buttonAddToCart" mnemonicParsing="false" onAction="#addToCart" stylesheets="@../../style/common.css" text="Add to cart">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </children>
+                           <styleClass>
+                              <String fx:value="wrapper-right" />
+                              <String fx:value="common-padding" />
+                           </styleClass>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
