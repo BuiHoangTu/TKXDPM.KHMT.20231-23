@@ -17,20 +17,20 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MediaInSquareController implements Initializable {
-    private Media m;
+    protected Media m;
     @FXML
-    private ImageView imageView;
+    protected ImageView imageView;
     @FXML
-    private Label labelTitle;
+    protected Label labelTitle;
     @FXML
-    private Label labelPrice;
+    protected Label labelPrice;
     @FXML
-    private Label labelStoreQuantity;
+    protected Label labelStoreQuantity;
     @FXML
-    private Spinner<Integer> spinnerBuyingQuantity;
+    protected Spinner<Integer> spinnerBuyingQuantity;
     @FXML
-    private Button buttonAddToCart;
-    private SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory;
+    protected Button buttonAddToCart;
+    protected SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,7 +60,7 @@ public class MediaInSquareController implements Initializable {
     }
 
     @FXML
-    private void addToCart(ActionEvent actionEvent) {
+    protected void addToCart(ActionEvent ignoredActionEvent) {
         int quantityBuy = this.spinnerBuyingQuantity.getValue();
         int quantityLeft = Integer.parseInt(this.labelStoreQuantity.getText()) - quantityBuy;
         this.labelStoreQuantity.setText(String.valueOf(quantityLeft));
