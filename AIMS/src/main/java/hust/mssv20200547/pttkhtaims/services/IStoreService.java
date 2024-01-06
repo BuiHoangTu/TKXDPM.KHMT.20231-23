@@ -9,4 +9,5 @@ public interface IStoreService {
     Map<Media, Long> searchMediaTitleInStore(String title, int limit);
     Map<Media, Long> searchMediaCategoryInStore(String category, int limit);
 
+    void addToCartInStore(int quantityOfMedia, int mediaId);
 }

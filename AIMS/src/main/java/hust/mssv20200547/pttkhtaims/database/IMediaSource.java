@@ -15,5 +15,7 @@ public interface IMediaSource {
 
     Map<Media, Long> searchMediaCategoryInStore(String category, int limit) throws SQLException;
 
+    void addToCartInStore(int quantityOfMedia, int mediaId) throws SQLException;
+
     void reduceMedias(Map<Media, Long> medias) throws SQLException;
 }

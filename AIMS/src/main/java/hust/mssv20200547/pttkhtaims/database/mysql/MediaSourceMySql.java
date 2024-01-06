@@ -238,6 +238,53 @@ public class MediaSourceMySql extends MysqlBase implements IMediaSource {
         prepareStm.executeBatch();
     }
 
+    @Override
+    public void addToCartInStore(int quantityOfMedia, int mediaId) throws SQLException {
+        var mysql = getConnection();
+        var preparedStatement = mysql.prepareStatement(
+                "INSERT INTO aims_order (paymentInfoId, deliveryInfoId, orderStatus)\n" +
+                        "VALUES (1, 3, 0);\n" +
+                        "INSERT INTO medias_in_order (order_id, media_id, quantity, is_rush)\n" +
+                        "VALUES ((SELECT MAX(id) FROM aims_order), ?, ?, 0);"
+//                        "VALUES ((SELECT MAX(id) FROM aims_order), " + mediaId + ", "  + quantityOfMedia + ", 0);"
+        );
+        preparedStatement.setInt(1, quantityOfMedia);
+        preparedStatement.setInt(2, mediaId);
+        preparedStatement.executeQuery();
+
+//        Map<Media, Long> localRes = new HashMap<>();
+//        var rsIte = new ResultSetColIterator(preparedStatement.executeQuery());
+//        while (rsIte.next()) {
+//            long id = rsIte.getLong();
+//            String title = rsIte.getString();
+//            String category = rsIte.getString();
+//            long value = rsIte.getLong();
+//            long price = rsIte.getLong();
+//            long quantity = rsIte.getLong();
+//
+//            switch (category.toLowerCase(Locale.ROOT)) {
+//                case "book" -> localRes.put(
+//                        new Book(id, title, price, value, null, null, null, null, null, null, 0),
+//                        quantity
+//                );
+//                case "cd" -> localRes.put(
+//                        new CD(id, title, price, value, null, null, null, null, null),
+//                        quantity
+//                );
+//                case "digital_video_disc" -> localRes.put(
+//                        new DigitalVideoDisc(id, title, price, value, null, null, null, null, null, null, null, null),
+//                        quantity
+//                );
+//                case "long_play_record" -> localRes.put(
+//                        new LongPlayRecord(id, title, price, value, null, null, null, null, null, null, null, null),
+//                        quantity
+//                );
+//                default -> localRes.put(new Media(id, title, price, value) {
+//                }, quantity);
+//            }
+//        }
+
+    }
     @SuppressWarnings("all")
     private static class ResultSetColIterator {
         private final ResultSet rs;

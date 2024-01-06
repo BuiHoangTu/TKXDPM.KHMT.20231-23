@@ -4,6 +4,8 @@ import hust.mssv20200547.pttkhtaims.AIMS;
 import hust.mssv20200547.pttkhtaims.database.IMediaSource;
 import hust.mssv20200547.pttkhtaims.database.mysql.MediaSourceMySql;
 import hust.mssv20200547.pttkhtaims.models.*;
+import hust.mssv20200547.pttkhtaims.services.IStoreService;
+import hust.mssv20200547.pttkhtaims.services.StoreService;
 import hust.mssv20200547.pttkhtaims.views.BaseView;
 import hust.mssv20200547.pttkhtaims.views.medias.BookView;
 import hust.mssv20200547.pttkhtaims.views.medias.CdView;
@@ -44,6 +46,9 @@ public class MediaInSquareController implements Initializable {
     protected SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory;
 
     private IMediaSource mediaSource = new MediaSourceMySql();
+    private final IStoreService storeService = new StoreService();
+
+    private int id;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,6 +64,7 @@ public class MediaInSquareController implements Initializable {
         this.labelTitle.setText(m.getTitle());
         this.labelPrice.setText(String.valueOf(m.getPrice()));
         this.labelStoreQuantity.setText(String.valueOf(mediaEntry.getValue()));
+        this.id = (int)m.getId();
 
         this.spinnerValueFactory.setMax(mediaEntry.getValue().intValue());
 
@@ -77,6 +83,7 @@ public class MediaInSquareController implements Initializable {
     @FXML
     protected void addToCart(ActionEvent ignoredActionEvent) {
         int quantityBuy = this.spinnerBuyingQuantity.getValue();
+        storeService.addToCartInStore(quantityBuy, this.id);
         int quantityLeft = Integer.parseInt(this.labelStoreQuantity.getText()) - quantityBuy;
         this.labelStoreQuantity.setText(String.valueOf(quantityLeft));
         this.spinnerValueFactory.setMax(quantityLeft);

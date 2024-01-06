@@ -37,4 +37,12 @@ public class StoreService implements IStoreService {
             return Collections.emptyMap();
         }
     }
+    @Override
+    public void addToCartInStore(int quantityOfMedia, int mediaId) {
+        try {
+            mediaSource.addToCartInStore(quantityOfMedia, mediaId);
+        } catch (SQLException ignored) {
+
+        }
+    }
 }
