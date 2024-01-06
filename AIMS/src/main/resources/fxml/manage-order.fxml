@@ -69,20 +69,5 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="prevButton" layoutX="44.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #ccc; -fx-cursor: hand;" text="&lt;">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="nextButton" layoutX="108.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #ccc; -fx-cursor: hand;" text="&gt;">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Text layoutX="87.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>
