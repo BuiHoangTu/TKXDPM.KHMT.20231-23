@@ -246,6 +246,17 @@ The recommended structure is as follows:
 
 ---
 
+## Good design 
+### Bui Hoang Tu 20200547
+1. Kiến trúc MVC (Model-View-Controller) đối với code giao diện người dùng 
+   2. Models: các class chứa dữ liệu 
+   3. Views: các class khởi tạo màn hình của người dùng 
+   4. Controllers: các class điều khiển tương tác của View và người dùng 
+   5. Services: các class xử lý logic phức tạp 
+2. Singleton 
+   1. Connection tới mysql là 1 Connection duy nhất 
+3. Loose-coupling 
+   1. Sử dụng Interface đối với các class truy xuất dữ liệu từ database để giảm độ phụ thuộc 
 
 ## AIMS' description
 
