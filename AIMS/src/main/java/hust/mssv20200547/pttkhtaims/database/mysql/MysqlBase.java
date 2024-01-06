@@ -20,7 +20,7 @@ public abstract class MysqlBase implements ISql {
 
     @Override
     public Connection openConnection() throws SQLException {
-        if (CONNECTION.isClosed()) establishConnection();
+        if (CONNECTION == null || CONNECTION.isClosed()) establishConnection();
         return CONNECTION;
     }
     
