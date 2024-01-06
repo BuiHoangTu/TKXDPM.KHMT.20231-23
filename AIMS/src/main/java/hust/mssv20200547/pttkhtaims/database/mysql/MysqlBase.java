@@ -23,4 +23,5 @@ public abstract class MysqlBase implements ISql {
         if (CONNECTION.isClosed()) establishConnection();
         return CONNECTION;
     }
+    
 }
