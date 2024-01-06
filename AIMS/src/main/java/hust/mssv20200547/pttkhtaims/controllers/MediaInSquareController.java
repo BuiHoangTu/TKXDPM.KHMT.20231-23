@@ -1,6 +1,8 @@
 package hust.mssv20200547.pttkhtaims.controllers;
 
 import hust.mssv20200547.pttkhtaims.AIMS;
+import hust.mssv20200547.pttkhtaims.database.IMediaSource;
+import hust.mssv20200547.pttkhtaims.database.mysql.MediaSourceMySql;
 import hust.mssv20200547.pttkhtaims.models.*;
 import hust.mssv20200547.pttkhtaims.views.BaseView;
 import hust.mssv20200547.pttkhtaims.views.medias.BookView;
@@ -21,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -39,6 +42,8 @@ public class MediaInSquareController implements Initializable {
     @FXML
     protected Button buttonAddToCart;
     protected SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory;
+
+    private IMediaSource mediaSource = new MediaSourceMySql();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,8 +86,11 @@ public class MediaInSquareController implements Initializable {
     }
 
     @FXML
-    private void goToMediaDetail(MouseEvent ignoredMouseEvent) throws IOException {
+    private void goToMediaDetail(MouseEvent ignoredMouseEvent) throws IOException, SQLException {
         var m = entry.getKey();
+        // load others properties
+        mediaSource.getMediaDetail(m);
+
         BaseView baseView;
         if (m instanceof Book) {
             var bookView = new BookView();
