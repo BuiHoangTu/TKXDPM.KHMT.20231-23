@@ -38,7 +38,7 @@ public class Order {
         public String getStatusDescription() {
             switch (this) {
                 case NOT_PROCESS:
-                    return "Not Processed";
+                    return "Chưa xử lý";
                 case NOT_PAID:
                     return "Not Paid";
                 case PAID_SHIPPING:
