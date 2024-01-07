@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="44.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danh sách đơn hàng">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font></Text>
+      <TableView fx:id="orderTableView" layoutX="43.0" layoutY="150.0" prefHeight="229.0" prefWidth="391.0">
+        <columns>
+          <TableColumn fx:id="orderIdColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="deliveryInfoColumn" prefWidth="162.00000762939453" text="Tên người nhận" />
+            <TableColumn fx:id="orderStatusColumn" prefWidth="166.66668701171875" text="Trạng thái" />
+        </columns>
+      </TableView>
+      <TableView fx:id="detailOrder" layoutX="456.0" layoutY="150.0" prefHeight="229.0" prefWidth="453.0">
+        <columns>
+          <TableColumn fx:id="idMedia" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="name" prefWidth="75.0" text="Tên" />
+            <TableColumn fx:id="quantity" prefWidth="75.0" text="Số lượng" />
+            <TableColumn fx:id="value" prefWidth="119.99993896484375" text="Giá 1 sản phẩm" />
+            <TableColumn fx:id="totalPrice" prefWidth="105.99995930989581" text="Tổng tiền" />
+        </columns>
+      </TableView>
+      <Text layoutX="948.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên người nhận:" wrappingWidth="96.814453125">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
+      <Text layoutX="948.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số diện thoại:">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
+      <Text layoutX="948.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
+      <Text layoutX="948.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thành phố:">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
+      <Text layoutX="948.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ:">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
+      <Text layoutX="948.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chỉ dẫn giao hàng:">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
+      <Text fx:id="receiverName" layoutX="1079.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="receiverEmail" layoutX="1079.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="receiverPhone" layoutX="1079.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="receiverProvince" layoutX="1079.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="receiverAddress" layoutX="1079.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="receiverInstruction" layoutX="1079.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button fx:id="rejectButton" layoutX="951.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #dc3545; -fx-cursor: hand;" text="Từ chối">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="acceptButton" layoutX="1044.0" layoutY="406.0" mnemonicParsing="false" style="-fx-background-color: #28a745; -fx-cursor: hand;" text="Phê duyệt">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
