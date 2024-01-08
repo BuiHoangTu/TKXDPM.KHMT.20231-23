@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.*;
 
 public interface IOrderSource {
-    int saveOrder(int paymentInfoId, int deliveryInfoId) throws SQLException;
+    int saveOrder(int paymentInfoId, int deliveryInfoId, Order order) throws SQLException;
     void setOrderStatus (int orderId, Order.OrderStatus status) throws SQLException;
     List<Order> getAllOrders() throws SQLException;
-    public List<Integer> getListAvailableItem(String ids) throws SQLException;
+    List<Integer> getListAvailableItem(String ids) throws SQLException;
 
 }

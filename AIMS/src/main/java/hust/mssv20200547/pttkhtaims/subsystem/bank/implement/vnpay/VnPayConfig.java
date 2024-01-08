@@ -1,11 +1,13 @@
-package hust.mssv20200547.pttkhtaims.subsystem.bank.vnpay;
+package hust.mssv20200547.pttkhtaims.subsystem.bank.implement.vnpay;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class VnPayConfig {
     public static final String LANGUAGE = "vn";
@@ -15,8 +17,8 @@ public class VnPayConfig {
     public static final String ORDER_TYPE = "other";
     public static final String PAY_URL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static final String RETURN_URL = "https://sandbox.vnpayment.vn/tryitnow/Home/VnPayReturn";
-    public static final String TMN_CODE = "TXOOZNX4";
-    public static final String SECRET_KEY = "HUQHTRVXVRGJJWHMBFCAUBAXOSAJBIND";
+    public static final String TMN_CODE = "QKQ5X1FM";
+    public static final String SECRET_KEY = "RKOWDYMENIOIMCNJSMYZZWZTVYKLUUBC";
     public static final String API_URL = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
     public static final String TIME_FORMAT = "yyyyMMddHHmmss";
     public static final String TIME_SECTOR = "Etc/GMT+7";
@@ -54,14 +56,13 @@ public class VnPayConfig {
     }
 
     //Util for VNPAY
-    public static String hashAllFields(Map fields) {
-        List fieldNames = new ArrayList(fields.keySet());
-        Collections.sort(fieldNames);
+    public static String hashAllFields(Map<String, String> fields) {
+        List<String> sortedFieldNames = fields.keySet().stream().sorted().toList();
         StringBuilder sb = new StringBuilder();
-        Iterator itr = fieldNames.iterator();
+        Iterator<String> itr = sortedFieldNames.iterator();
         while (itr.hasNext()) {
-            String fieldName = (String) itr.next();
-            String fieldValue = (String) fields.get(fieldName);
+            String fieldName = itr.next();
+            String fieldValue = fields.get(fieldName);
             if ((fieldValue != null) && (!fieldValue.isEmpty())) {
                 sb.append(fieldName);
                 sb.append("=");
@@ -95,15 +96,5 @@ public class VnPayConfig {
         } catch (Exception ex) {
             return "";
         }
-    }
-
-    public static String getRandomNumber(int len) {
-        Random rnd = new Random();
-        String chars = "0123456789";
-        StringBuilder sb = new StringBuilder(len);
-        for (int i = 0; i < len; i++) {
-            sb.append(chars.charAt(rnd.nextInt(chars.length())));
-        }
-        return sb.toString();
     }
 }

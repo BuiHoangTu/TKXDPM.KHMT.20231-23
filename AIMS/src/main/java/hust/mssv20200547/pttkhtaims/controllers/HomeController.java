@@ -104,6 +104,7 @@ public class HomeController implements Initializable {
         System.out.println(home);
     }
 
+    @FXML
     public void openCart(MouseEvent ignoredMouseEvent) throws IOException {
         var cartView = new CartView();
 
@@ -111,7 +112,6 @@ public class HomeController implements Initializable {
 
         cartView.getController().setCart(AIMS.cart);
     }
-
 
     private static class VBoxNext {
         private final VBox[] vBoxes;

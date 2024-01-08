@@ -24,13 +24,14 @@ public class CartController implements Initializable {
     @FXML
     private VBox vboxCart;
     @FXML
-    private Label subtotal;
-    @FXML
     private Label labelSubtotal;
+    @FXML
+    private Label trashlabelSubtotal;
     @FXML
     private Label labelVAT;
     @FXML
     private Label labelAmount;
+    // TODO one of these label is not bind to right elems
 
 
     @FXML
@@ -46,6 +47,7 @@ public class CartController implements Initializable {
 
     public void setCart(Cart cart) throws IOException {
         var medias = this.vboxCart.getChildren();
+        medias.clear();
 
         for (var mediaEntry : cart.entrySet()) {
             var mediaView = new MediaInVerticalView();
@@ -53,5 +55,10 @@ public class CartController implements Initializable {
             mediaController.setMedia(mediaEntry);
             medias.add(mediaView.getRoot());
         }
+
+        long subtotal = cart.totalPrice();
+        this.labelSubtotal.setText(String.valueOf(subtotal));
+        this.labelVAT.setText(String.valueOf(subtotal / 10));
+        this.labelAmount.setText(String.valueOf(subtotal * 110 / 100));
     }
 }

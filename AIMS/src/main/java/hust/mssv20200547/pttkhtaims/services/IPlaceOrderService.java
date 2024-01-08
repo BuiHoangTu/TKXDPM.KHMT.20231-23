@@ -1,7 +1,10 @@
 package hust.mssv20200547.pttkhtaims.services;
 
 import hust.mssv20200547.pttkhtaims.database.IMediaSource;
+import hust.mssv20200547.pttkhtaims.exceptions.service.order.NameFormatException;
+import hust.mssv20200547.pttkhtaims.exceptions.service.order.PhoneNumberFormatException;
 import hust.mssv20200547.pttkhtaims.models.Cart;
+import hust.mssv20200547.pttkhtaims.models.Invoice;
 import hust.mssv20200547.pttkhtaims.models.Media;
 import hust.mssv20200547.pttkhtaims.models.Order;
 
@@ -30,4 +33,7 @@ public interface IPlaceOrderService {
 
     long calculateDeliveryFee(Order o);
 
+    Order createOrder(String receiver, String phone, String email, String city, String detailAddr, String ins) throws SQLException, NameFormatException, PhoneNumberFormatException;
+
+    Invoice createInvoice(long totalPrice, long deliveryFee, int orderId) throws SQLException;
 }

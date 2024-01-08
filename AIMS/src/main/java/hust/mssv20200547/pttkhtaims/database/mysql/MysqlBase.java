@@ -9,18 +9,29 @@ import java.sql.SQLException;
 public abstract class MysqlBase implements ISql {
     private static Connection CONNECTION;
 
-    private static void establishConnection() throws SQLException {
+    private static void createConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+            CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalaims", "personal_aims", "personal_aims");
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalaims", "personal_aims", "personal_aims");
     }
 
     @Override
-    public Connection openConnection() throws SQLException {
-        if (CONNECTION == null || CONNECTION.isClosed()) establishConnection();
+    public Connection getConnection() {
+        boolean connectNotAvailable;
+        try {
+            connectNotAvailable = CONNECTION == null || CONNECTION.isClosed();
+        } catch (SQLException e) {
+            connectNotAvailable = true;
+        }
+
+        if (connectNotAvailable) createConnection();
         return CONNECTION;
+    }
+
+    public Connection openConnection() {
+        return getConnection();
     }
 }

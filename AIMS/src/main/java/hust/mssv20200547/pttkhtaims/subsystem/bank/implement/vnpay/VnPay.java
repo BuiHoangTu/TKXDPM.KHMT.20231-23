@@ -1,11 +1,14 @@
-package hust.mssv20200547.pttkhtaims.subsystem.bank.vnpay;
+package hust.mssv20200547.pttkhtaims.subsystem.bank.implement.vnpay;
 
 import hust.mssv20200547.pttkhtaims.subsystem.bank.IBank;
 import hust.mssv20200547.pttkhtaims.subsystem.bank.IInvoice;
-import hust.mssv20200547.pttkhtaims.subsystem.bank.models.PaymentTransaction;
-import hust.mssv20200547.pttkhtaims.subsystem.bank.vnpay.views.pay.PayView;
+import hust.mssv20200547.pttkhtaims.subsystem.bank.IPaymentTransaction;
+import hust.mssv20200547.pttkhtaims.subsystem.bank.exceptions.pay.*;
+import hust.mssv20200547.pttkhtaims.subsystem.bank.implement.vnpay.views.pay.PayView;
 
 import java.io.IOException;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -13,19 +16,35 @@ import java.util.*;
 
 public class VnPay implements IBank {
     @Override
-    public PaymentTransaction makePaymentTransaction(IInvoice invoice, String contents) {
-        try {
-            String payUrl = this.generatePayOrderUrl(invoice, contents);
-            // create entries URL
-            new PayView(payUrl);
+    public IPaymentTransaction makePaymentTransaction(
+            IInvoice invoice,
+            String contents
+    ) throws
+            TransactionFailedException,
+            AnonymousTransactionException,
+            UnrecognizedException,
+            TransactionNotDoneException,
+            ClientBankException {
+        String payUrl = this.generatePayOrderUrl(invoice, contents);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+        // start new view
+        var payView = new PayView(payUrl);
+
+        // this show and wait till close
+        IPaymentTransaction paymentTransaction = payView.showThenGetPaymentTransaction();
+
+        if (paymentTransaction == null) throw new TransactionNotDoneException();
+
+        return switch (paymentTransaction.getErrorCode()) {
+            case "00" -> paymentTransaction;
+            case "07" -> throw new AnonymousTransactionException();
+            case "09", "10", "11", "12", "13", "24", "51", "65", "79" -> throw new TransactionFailedException();
+            case "75" -> throw new ClientBankException();
+            default -> throw new UnrecognizedException();
+        };
     }
 
-    public String generatePayOrderUrl(IInvoice invoice, String contents) throws IOException {
+    private String generatePayOrderUrl(IInvoice invoice, String contents) {
         long vnpAmount = invoice.getTotalFee() * 100 * 1000;
 
         Map<String, String> vnp_Params = new HashMap<>();
@@ -56,13 +75,12 @@ public class VnPay implements IBank {
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
-        List fieldNames = new ArrayList(vnp_Params.keySet());
-        Collections.sort(fieldNames);
+        List<String> sortedFieldNames = vnp_Params.keySet().stream().sorted().toList();
         StringBuilder hashData = new StringBuilder();
         StringBuilder query = new StringBuilder();
-        var itr = fieldNames.iterator();
+        var itr = sortedFieldNames.iterator();
         while (itr.hasNext()) {
-            String fieldName = (String) itr.next();
+            String fieldName = itr.next();
             String fieldValue = vnp_Params.get(fieldName);
             if ((fieldValue != null) && (!fieldValue.isEmpty())) {
                 //Build hash data
@@ -85,18 +103,14 @@ public class VnPay implements IBank {
         return VnPayConfig.PAY_URL + "?" + queryUrl;
     }
 
-    private String getIpAddress() throws IOException {
-//        URL url = new URL("http://www.realip.info/api/p/realip.php");
-//        try (BufferedReader in = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()))) {
-//            String content = String.join("\n", in.lines().collect(Collectors.toList()));
-//            Matcher matcher = pattern.matcher(content);
-//            if (matcher.matches()) {
-//                return matcher.group("ip");
-//            } else {
-//                return "No ip found";
-//            }
-//        }
-        return "127.0.0.1:50387";
+    private String getIpAddress() {
+        try (final DatagramSocket socket = new DatagramSocket()) {
+            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+            return socket.getLocalAddress().getHostAddress();
+        } catch (IOException e) {
+            // default
+            return "127.0.0.1:50387";
+        }
     }
 
 

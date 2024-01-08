@@ -1,27 +1,27 @@
 package hust.mssv20200547.pttkhtaims.database.mysql;
 
-import hust.mssv20200547.pttkhtaims.database.IInvoiceSource;
-import hust.mssv20200547.pttkhtaims.models.Invoice;
+import hust.mssv20200547.pttkhtaims.database.IDeliveryInfoSource;
+import hust.mssv20200547.pttkhtaims.models.DeliveryInfo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class InvoiceSource extends MysqlBase implements IInvoiceSource {
+public class DeliveryInfoSource extends MysqlBase implements IDeliveryInfoSource {
     @Override
-    public int saveInvoice(Invoice invoice) throws SQLException {
+    public int saveDeliveryInfo(DeliveryInfo deliveryInfo) throws SQLException {
         var mysql = getConnection();
         var prepareStm = mysql.prepareStatement(
-                "INSERT INTO invoice(orderid, priceNoVAT, priceWithVAT, deliveryFee, totalFee) " +
+                "INSERT INTO delivery_info(receiver, phoneNumber, email, cityAddress, detailedAddress) " +
                         "values (?, ?, ?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS
         );
 
-        prepareStm.setInt(1, invoice.getOrderId());
-        prepareStm.setLong(2, invoice.getPriceNoVat());
-        prepareStm.setLong(3, invoice.getPriceWithVat());
-        prepareStm.setLong(4, invoice.getDeliveryFee());
-        prepareStm.setLong(5, invoice.getTotalFee());
+        prepareStm.setString(1, deliveryInfo.getReceiver());
+        prepareStm.setString(2, deliveryInfo.getPhoneNumber());
+        prepareStm.setString(3, deliveryInfo.getEmail());
+        prepareStm.setString(4, deliveryInfo.getCityAddress());
+        prepareStm.setString(5, deliveryInfo.getDetailedAddress());
 
         int res = prepareStm.executeUpdate();
 
@@ -35,5 +35,6 @@ public class InvoiceSource extends MysqlBase implements IInvoiceSource {
                 throw new SQLException("No ID obtained.");
             }
         }
+
     }
 }

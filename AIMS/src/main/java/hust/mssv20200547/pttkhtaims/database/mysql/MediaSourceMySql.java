@@ -7,8 +7,8 @@ import hust.mssv20200547.pttkhtaims.models.*;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
-import java.sql.*;
 import java.sql.Date;
+import java.sql.*;
 import java.util.*;
 
 public class MediaSourceMySql extends MysqlBase implements IMediaSource {
@@ -23,9 +23,6 @@ public class MediaSourceMySql extends MysqlBase implements IMediaSource {
         }
     }
     private static final org.slf4j.Logger LOGGER_MY_SQL_AIMS = org.slf4j.LoggerFactory.getLogger(MediaSourceMySql.class);
-    private Connection getConnection() throws SQLException {
-        return this.openConnection();
-    }
 
     @Override
     public Map<Media, Long> get(Collection<Media> medias) throws SQLException {

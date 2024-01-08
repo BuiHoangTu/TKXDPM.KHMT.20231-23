@@ -1,19 +1,20 @@
 package hust.mssv20200547.pttkhtaims.controllers;
 
 import hust.mssv20200547.pttkhtaims.AIMS;
-import hust.mssv20200547.pttkhtaims.models.DeliveryInfo;
-import hust.mssv20200547.pttkhtaims.models.Invoice;
-import hust.mssv20200547.pttkhtaims.models.Order;
+import hust.mssv20200547.pttkhtaims.exceptions.service.order.NameFormatException;
+import hust.mssv20200547.pttkhtaims.exceptions.service.order.PhoneNumberFormatException;
 import hust.mssv20200547.pttkhtaims.services.IPlaceOrderService;
 import hust.mssv20200547.pttkhtaims.services.PlaceOrderService;
-import hust.mssv20200547.pttkhtaims.subsystem.bank.vnpay.VnPay;
 import hust.mssv20200547.pttkhtaims.views.BaseView;
+import hust.mssv20200547.pttkhtaims.views.InvoiceView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DeliveryFormController implements Initializable {
@@ -46,16 +47,14 @@ public class DeliveryFormController implements Initializable {
     @FXML
     private Label errorProvince;
 
-    private IPlaceOrderService placeOrderService = new PlaceOrderService();
+    private final IPlaceOrderService placeOrderService = new PlaceOrderService();
 
     @FXML
     private void goBackPage() {
         view.apply((Stage) radioFastDelivery.getScene().getWindow());
     }
     @FXML
-    private void updateDeliveryMethodInfo() {
-        // TODO: save to invoice,
-        // TODO: switch to invoice screen first
+    private void updateDeliveryMethodInfo() throws IOException, SQLException {
         var receiver = this.tfReceiver.getText();
         var phone = this.tfPhoneNumber.getText();
         var email = this.tfEmail.getText();
@@ -63,23 +62,22 @@ public class DeliveryFormController implements Initializable {
         var detailAddr = this.tfDetailAddress.getText();
         var ins = this.tfInstruction.getText();
 
-        if (! placeOrderService.validateName(receiver)) return;
-        if (! placeOrderService.validatePhoneNumber(phone)) return;
+        // use order service
+        try {
+            long totalPrice = AIMS.cart.totalPrice();
 
-        DeliveryInfo deliveryInfo = new DeliveryInfo(receiver, phone, email, city, detailAddr, ins);
-        long totalPrice = AIMS.cart.totalPrice();
-        Order order = new Order(AIMS.cart, deliveryInfo);
+            var order = placeOrderService.createOrder(receiver, phone, email, city, detailAddr, ins);
+            long deliveryFee = placeOrderService.calculateDeliveryFee(order);
 
-        // TODO: save db
+            var invoice = placeOrderService.createInvoice(totalPrice, deliveryFee, order.getOrderId());
 
-        long deliveryFee = placeOrderService.calculateDeliveryFee(order);
-        Invoice invoice = new Invoice(totalPrice, deliveryFee);
-        // TODO: save to db
-        // TODO: replace below with get generatedId
-        invoice.setOrderId(20);
-        // TODO: put this in suitable class
-        var res = new VnPay().makePaymentTransaction(invoice, "Pay for AIMS");
-        // TODO: go to suitable class
+            var invoiceView = new InvoiceView();
+            invoiceView.getController().setDefaultValues(order, invoice);
+            invoiceView.apply((Stage) tfReceiver.getScene().getWindow());
+
+        } catch (NameFormatException | PhoneNumberFormatException ignored) {
+            // ignore submit, maybe add pop-up
+        }
     }
 
     public void setPrevPage(BaseView view) {
@@ -97,7 +95,7 @@ public class DeliveryFormController implements Initializable {
 
         this.tfPhoneNumber.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
             if (!newPropertyValue) {
-                var res = placeOrderService.validateName(this.tfPhoneNumber.getText());
+                var res = placeOrderService.validatePhoneNumber(this.tfPhoneNumber.getText());
                 errorNumber.setVisible(!res);
             }
         });
