@@ -18,9 +18,9 @@ public abstract class MysqlBase implements ISql {
         CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalaims", "personal_aims", "personal_aims");
     }
 
-    @Override
-    public Connection openConnection() throws SQLException {
-        if (CONNECTION == null || CONNECTION.isClosed()) establishConnection();
-        return CONNECTION;
-    }
+   @Override
+   public Connection openConnection() throws SQLException {
+       if (CONNECTION == null || CONNECTION.isClosed()) establishConnection();
+       return CONNECTION;
+   }
 }

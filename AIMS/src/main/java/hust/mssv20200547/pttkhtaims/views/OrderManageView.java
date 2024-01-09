@@ -5,6 +5,7 @@ import hust.mssv20200547.pttkhtaims.controllers.OrderController;
 import hust.mssv20200547.pttkhtaims.models.Media;
 import hust.mssv20200547.pttkhtaims.models.Order;
 import hust.mssv20200547.pttkhtaims.models.DeliveryInfo;
+import hust.mssv20200547.pttkhtaims.interfaces.order.*;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,8 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.util.Duration;
 import java.io.IOException;
-import java.net.URL;import javafx.collections.FXCollections;
+import java.net.URL;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -245,13 +247,22 @@ public class OrderManageView extends BaseView implements Initializable {
         });
     }
     public void setDataOfTableOrder() throws SQLException {
-        var listOfOrders = orderController.getListOrders();
+        List<Order> listOfOrders = orderController.getListOrders();
+
+        for (int i = 0; i < listOfOrders.size(); i++) {
+            Order order = listOfOrders.get(i);
+            var id = order.getOrderStatus().getI();
+            IOrderStatusStrategy orderStatusStrategy = OrderStatusStrategyFactory.CreateStrategy(id);
+            System.out.println(orderStatusStrategy.getStatusDescription());
+            order.setOrderStatusStrategy(orderStatusStrategy);
+//            order = new Order(order.getOrderId(), order.getMediaInOrder(), order.getDeliveryInfo(), order.getOrderStatus(), orderStatusStrategy);
+        }
         ObservableList<Order> observableListOfOrders = FXCollections.observableArrayList(listOfOrders);
 
         // Set cell value factories for each column
         orderIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getOrderId()).asObject());
         deliveryInfoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDeliveryInfo().getReceiver()));
-        orderStatusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().getStatusDescription()));
+        orderStatusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatusDescription()));
 
         // Set the items for the TableView
         orderTableView.setItems(observableListOfOrders);
