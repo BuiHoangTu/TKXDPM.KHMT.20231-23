@@ -41,7 +41,6 @@ public class OrderController {
     }
 
     public String checkAvailable(Map<Media, Long> mediaInOrder) throws SQLException{
-
         String result = mediaInOrder.keySet()
                 .stream()
                 .map(Media::getId)
