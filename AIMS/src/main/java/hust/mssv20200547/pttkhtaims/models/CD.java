@@ -9,6 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 public class CD extends Media{
+    public static final String TYPE = "CD";
+
     private List<String> trackList;
     private String recordLabel;
     private String artist;
@@ -25,11 +27,25 @@ public class CD extends Media{
             String artist,
             String genre,
             LocalDate publicationDate) {
-        super(id, title, value, price);
+        super(id, title, value, price, TYPE);
         this.trackList = trackList;
         this.recordLabel = recordLabel;
         this.artist = artist;
         this.genre = genre;
         this.publicationDate = publicationDate;
+    }
+
+    public CD(Media media) {
+        this(
+                media.getId(),
+                media.getTitle(),
+                media.getValue(),
+                media.getPrice(),
+                null,
+                null,
+                null,
+                null,
+                null
+        );
     }
 }

@@ -12,10 +12,8 @@ public class HomeView extends BaseView {
     /**
      * Constructor
      *
-     * @throws IOException          if getSceneURL return null
-     * @throws NullPointerException if mainStage is null
      */
-    public HomeView() throws IOException, SQLException {
+    public HomeView() {
         super(PATH);
     }
 

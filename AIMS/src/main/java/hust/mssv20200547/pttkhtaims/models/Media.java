@@ -1,9 +1,6 @@
 package hust.mssv20200547.pttkhtaims.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Objects;
 
@@ -16,16 +13,17 @@ public abstract class Media {
     private String title;
     private long value;
     private long price;
+    private String type;
 
     @Override
     public int hashCode() {
-        return this.title.hashCode();
+        return Long.hashCode(this.id);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Media media)) return false;
-        return Objects.equals(title, media.title);
+        if (!(o instanceof Media that)) return false;
+        return this.id == that.id;
     }
 }

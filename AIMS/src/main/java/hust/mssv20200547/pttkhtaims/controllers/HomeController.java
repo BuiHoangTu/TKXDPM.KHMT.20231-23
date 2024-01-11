@@ -66,19 +66,14 @@ public class HomeController implements Initializable {
     }
 
     private void setMedias(Map<Media, Long> medias) {
-        var mediaEntries = medias.entrySet().stream().toList();
         var vBoxes = new VBoxNext(vBoxMedia1, vBoxMedia2, vBoxMedia3, vBoxMedia4);
         vBoxes.clearAll();
 
-        for (var mediaEntry : mediaEntries) {
-            try {
-                var mediaView = new MediaInSquareView();
-                MediaInSquareController mediaController = mediaView.getController();
-                mediaController.setMedia(mediaEntry);
-                vBoxes.next().getChildren().add(mediaView.getRoot());
-            } catch (IOException e) {
-                continue;
-            }
+        for (var mediaEntry : medias.entrySet()) {
+            var mediaView = new MediaInSquareView();
+            MediaInSquareController mediaController = mediaView.getController();
+            mediaController.setMedia(mediaEntry);
+            vBoxes.next().getChildren().add(mediaView.getRoot());
         }
     }
 
