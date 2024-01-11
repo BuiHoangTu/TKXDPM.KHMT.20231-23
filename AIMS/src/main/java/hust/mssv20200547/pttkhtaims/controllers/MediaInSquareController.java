@@ -2,7 +2,7 @@ package hust.mssv20200547.pttkhtaims.controllers;
 
 import hust.mssv20200547.pttkhtaims.AIMS;
 import hust.mssv20200547.pttkhtaims.database.IMediaSource;
-import hust.mssv20200547.pttkhtaims.database.mysql.MediaSourceMySql;
+import hust.mssv20200547.pttkhtaims.database.implementation.mysql.MediaSourceMySql;
 import hust.mssv20200547.pttkhtaims.models.*;
 import hust.mssv20200547.pttkhtaims.views.BaseView;
 import hust.mssv20200547.pttkhtaims.views.medias.BookView;

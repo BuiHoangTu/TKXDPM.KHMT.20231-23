@@ -1,4 +1,4 @@
-package hust.mssv20200547.pttkhtaims.database.mysql;
+package hust.mssv20200547.pttkhtaims.database.implementation.mysql;
 
 import hust.mssv20200547.pttkhtaims.database.IOrderSource;
 import hust.mssv20200547.pttkhtaims.models.Order;
