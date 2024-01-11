@@ -43,6 +43,8 @@ public class Cart implements Map< Media, Long> {
 
     @Override
     public Long put(Media key, Long value) {
+        long exist = content.get(key);
+        value += exist;
         return content.put(key, value);
     }
 
