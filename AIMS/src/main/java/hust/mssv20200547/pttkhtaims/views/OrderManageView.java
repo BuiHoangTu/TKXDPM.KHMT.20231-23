@@ -244,13 +244,12 @@ public class OrderManageView extends BaseView implements Initializable {
         });
     }
     public void setDataOfTableOrder() throws SQLException {
-        List<Order> listOfOrders = orderController.getListOrders(1, 1);
+        List<Order> listOfOrders = orderController.getListOrders(1, 30);
 
         for (int i = 0; i < listOfOrders.size(); i++) {
             Order order = listOfOrders.get(i);
             var id = order.getOrderStatus().getI();
             IOrderStatusStrategy orderStatusStrategy = OrderStatusStrategyFactory.CreateStrategy(id);
-            System.out.println(orderStatusStrategy.getStatusDescription());
             order.setOrderStatusStrategy(orderStatusStrategy);
 //            order = new Order(order.getOrderId(), order.getMediaInOrder(), order.getDeliveryInfo(), order.getOrderStatus(), orderStatusStrategy);
         }
