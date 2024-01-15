@@ -1,4 +1,4 @@
-package hust.mssv20200547.pttkhtaims.database.mysql;
+package hust.mssv20200547.pttkhtaims.database.implementation.mysql;
 
 import com.mysql.cj.exceptions.FeatureNotAvailableException;
 import hust.mssv20200547.pttkhtaims.database.IMediaSource;

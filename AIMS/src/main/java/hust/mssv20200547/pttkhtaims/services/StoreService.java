@@ -1,7 +1,7 @@
 package hust.mssv20200547.pttkhtaims.services;
 
 import hust.mssv20200547.pttkhtaims.database.IMediaSource;
-import hust.mssv20200547.pttkhtaims.database.mysql.MediaSourceMySql;
+import hust.mssv20200547.pttkhtaims.database.implementation.mysql.MediaSourceMySql;
 import hust.mssv20200547.pttkhtaims.models.Media;
 
 import java.sql.SQLException;
