@@ -36,9 +36,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.MouseEvent;
 import javafx.collections.ObservableMap;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 
 public class OrderManageView extends BaseView implements Initializable {
     private static final URL PATH = OrderManageView.class.getResource("/fxml/manage-order.fxml");
@@ -89,8 +87,8 @@ public class OrderManageView extends BaseView implements Initializable {
     private Button acceptButton;
     @FXML
     private Button rejectButton;
-
-
+    @FXML
+    private Button updateButton;
 
     public OrderManageView() throws IOException {
         super(PATH);
@@ -181,7 +179,6 @@ public class OrderManageView extends BaseView implements Initializable {
 
             orderManageStage.show();
         } catch (IOException e) {
-            // Xử lý ngoại lệ IOException khi không thể load FXML
             e.printStackTrace();
         }
     }
@@ -247,7 +244,7 @@ public class OrderManageView extends BaseView implements Initializable {
         });
     }
     public void setDataOfTableOrder() throws SQLException {
-        List<Order> listOfOrders = orderController.getListOrders();
+        List<Order> listOfOrders = orderController.getListOrders(1, 1);
 
         for (int i = 0; i < listOfOrders.size(); i++) {
             Order order = listOfOrders.get(i);
