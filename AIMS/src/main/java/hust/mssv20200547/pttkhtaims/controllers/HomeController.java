@@ -100,8 +100,6 @@ public class HomeController implements Initializable {
         // Thêm code xử lý khi nút được nhấp
         var home = new OrderManageView();
         home.switchToOrderManageView();
-        System.out.println("View Order Button clicked!");
-        System.out.println(home);
     }
 
     public void openCart(MouseEvent ignoredMouseEvent) throws IOException {
