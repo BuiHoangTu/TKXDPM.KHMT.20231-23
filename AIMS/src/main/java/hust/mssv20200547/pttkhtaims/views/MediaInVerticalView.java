@@ -8,7 +8,7 @@ import java.net.URL;
 public class MediaInVerticalView extends BaseView{
     private static final URL PATH = MediaInVerticalView.class.getResource("/fxml/media-in-vertical-view.fxml");
 
-    public MediaInVerticalView() throws IOException {
+    public MediaInVerticalView() {
         super(PATH);
     }
 

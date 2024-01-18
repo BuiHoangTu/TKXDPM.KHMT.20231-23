@@ -9,6 +9,8 @@ import java.time.LocalTime;
 @Getter
 @Setter
 public class DigitalVideoDisc extends Media {
+    public static final String TYPE = "DIGITAL_VIDEO_DISC";
+
     private String director;
     private LocalTime runtime;
     private String studio;
@@ -31,7 +33,7 @@ public class DigitalVideoDisc extends Media {
             String language,
             String subtitles,
             String genre) {
-        super(id, title, value, price);
+        super(id, title, value, price, TYPE);
         this.director = director;
         this.runtime = runtime;
         this.studio = studio;
@@ -40,5 +42,22 @@ public class DigitalVideoDisc extends Media {
         this.language = language;
         this.subtitles = subtitles;
         this.genre = genre;
+    }
+
+    public DigitalVideoDisc(Media media) {
+        this(
+                media.getId(),
+                media.getTitle(),
+                media.getValue(),
+                media.getPrice(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
     }
 }

@@ -44,7 +44,7 @@ public class CartController implements Initializable {
         this.labelAmount.setText(String.valueOf(AIMS.cart.totalPrice()));
     }
 
-    public void setCart(Cart cart) throws IOException {
+    public void setCart(Cart cart) {
         var medias = this.vboxCart.getChildren();
 
         for (var mediaEntry : cart.entrySet()) {

@@ -1,6 +1,6 @@
 package hust.mssv20200547.pttkhtaims.services;
 
-import hust.mssv20200547.pttkhtaims.database.IMediaSource;
+import hust.mssv20200547.pttkhtaims.database.media.IMediaSource;
 import hust.mssv20200547.pttkhtaims.models.Cart;
 import hust.mssv20200547.pttkhtaims.models.Media;
 import hust.mssv20200547.pttkhtaims.models.Order;

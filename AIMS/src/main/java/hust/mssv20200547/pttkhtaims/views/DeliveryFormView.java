@@ -8,7 +8,7 @@ import java.net.URL;
 public class DeliveryFormView extends BaseView {
     private static final URL PATH = DeliveryFormView.class.getResource("/fxml/delivery-form-view.fxml");
 
-    public DeliveryFormView() throws IOException {
+    public DeliveryFormView() {
         super(PATH);
     }
 

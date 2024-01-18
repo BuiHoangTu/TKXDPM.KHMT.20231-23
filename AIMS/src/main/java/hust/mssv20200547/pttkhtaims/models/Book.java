@@ -8,6 +8,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Book extends Media{
+    public static final String TYPE = "BOOK";
+
     private String genre;
     private String authors;
     private String cover;
@@ -28,7 +30,7 @@ public class Book extends Media{
             LocalDate publicationDate,
             String language,
             long numberOfPages) {
-        super(id, title, value, price);
+        super(id, title, value, price, TYPE);
         this.genre = genre;
         this.authors = authors;
         this.cover = cover;
@@ -36,5 +38,21 @@ public class Book extends Media{
         this.publicationDate = publicationDate;
         this.language = language;
         this.numberOfPages = numberOfPages;
+    }
+
+    public Book(Media media) {
+        this(
+                media.getId(),
+                media.getTitle(),
+                media.getValue(),
+                media.getPrice(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0
+        );
     }
 }
