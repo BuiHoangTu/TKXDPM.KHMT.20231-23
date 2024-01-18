@@ -13,8 +13,8 @@ import java.util.Map;
 public class OrderController {
     private static final IOrderSource orderSource = new OrderSource();
 
-    public List<Order> getListOrders() throws  SQLException {
-        var listOfOrders = orderSource.getAllOrders();
+    public List<Order> getListOrders(int page, int pageSize) throws  SQLException {
+        var listOfOrders = orderSource.getAllOrders(page, pageSize);
         return listOfOrders;
     }
 

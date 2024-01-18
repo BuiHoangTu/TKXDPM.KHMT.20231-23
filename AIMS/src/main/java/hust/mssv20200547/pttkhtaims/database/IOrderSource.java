@@ -8,7 +8,7 @@ import java.util.*;
 public interface IOrderSource {
     int saveOrder(int paymentInfoId, int deliveryInfoId) throws SQLException;
     void setOrderStatus (int orderId, Order.OrderStatus status) throws SQLException;
-    List<Order> getAllOrders() throws SQLException;
+    List<Order> getAllOrders(int page, int pageSize) throws SQLException;
     public List<Integer> getListAvailableItem(String ids) throws SQLException;
 
 }

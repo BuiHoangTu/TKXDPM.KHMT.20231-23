@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.sql.PreparedStatement;
 
 public class OrderSource extends MysqlBase implements IOrderSource {
     @Override
@@ -61,7 +62,7 @@ public class OrderSource extends MysqlBase implements IOrderSource {
 
     }
     @Override
-    public List<Order> getAllOrders() throws SQLException {
+    public List<Order> getAllOrders(int page, int pageSize) throws SQLException {
         List<Order> orders = new ArrayList<>();
 
         try (var mysql = openConnection();
@@ -69,9 +70,17 @@ public class OrderSource extends MysqlBase implements IOrderSource {
 
             var query = "SELECT ai.id, ai.orderStatus, di.cityAddress, di.detailedAddress, di.email, di.phoneNumber, di.receiver " +
                     "FROM aims_order AS ai " +
-                    "LEFT JOIN delivery_info AS di ON ai.deliveryInfoId = di.id";
+                    "LEFT JOIN delivery_info AS di ON ai.deliveryInfoId = di.id " +
+                    "ORDER BY ai.id " +
+                    "LIMIT ?, ?";
 
-            var resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = mysql.prepareStatement(query);
+            // Tính toán vị trí bắt đầu cho phân trang
+            int offset = (page - 1) * pageSize;
+            preparedStatement.setInt(1, offset);
+            preparedStatement.setInt(2, pageSize);
+
+            var resultSet = preparedStatement.executeQuery();  // Execute the prepared statement
 
             while (resultSet.next()) {
                 int orderId = resultSet.getInt("id");
@@ -94,6 +103,8 @@ public class OrderSource extends MysqlBase implements IOrderSource {
 
         return orders;
     }
+
+
 
     private Map<Media, Long> loadMediaInOrder(int orderId) throws SQLException {
         Map<Media, Long> mediaInOrder = new HashMap<>();
