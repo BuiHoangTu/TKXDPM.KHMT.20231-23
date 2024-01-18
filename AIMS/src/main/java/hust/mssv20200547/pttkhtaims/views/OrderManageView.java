@@ -90,7 +90,7 @@ public class OrderManageView extends BaseView implements Initializable {
     @FXML
     private Button updateButton;
 
-    public OrderManageView() throws IOException {
+    public OrderManageView() {
         super(PATH);
         fxmlLoader = new FXMLLoader(PATH);
         fxmlLoader.setController(this);

@@ -12,10 +12,8 @@ public class CartView extends BaseView{
     /**
      * prepare a new scene
      *
-     * @throws IOException          if getSceneURL return null
-     * @throws NullPointerException if cant find fxml file
      */
-    public CartView() throws IOException {
+    public CartView() {
         super(PATH);
         this.getController().setCart(AIMS.cart);
     }

@@ -1,20 +1,19 @@
-package hust.mssv20200547.pttkhtaims.views;
+package hust.mssv20200547.pttkhtaims.views.medias;
 
 import hust.mssv20200547.pttkhtaims.controllers.MediaInSquareController;
+import hust.mssv20200547.pttkhtaims.views.BaseView;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class MediaInSquareView extends BaseView{
-    private static final URL PATH = MediaInSquareView.class.getResource("/fxml/media-in-square-view.fxml");
-
+public abstract class DetailView extends BaseView {
     /**
      * prepare a new scene
      *
-     * @throws NullPointerException if cant find fxml file
+     * @param sceneUrl
      */
-    public MediaInSquareView() {
-        super(PATH);
+    public DetailView(URL sceneUrl) {
+        super(sceneUrl);
     }
 
     @Override

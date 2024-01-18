@@ -18,9 +18,13 @@ public abstract class BaseView {
      * @throws IOException if getSceneURL return null
      * @throws NullPointerException if cant find fxml file
      */
-    public BaseView(URL sceneUrl) throws IOException {
+    public BaseView(URL sceneUrl) {
         this.loader = new FXMLLoader(sceneUrl);
-        this.root = loader.load();
+        try {
+            this.root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
